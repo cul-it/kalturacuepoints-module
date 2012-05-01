@@ -1,5 +1,0 @@
-name = "Kaltura CuePoints"
-description = "Support for chapters in Kaltura videos"
-package = "Cornell University Library"
-core = 7.x
-dependencies[] = kaltura
