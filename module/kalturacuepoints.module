@@ -12,11 +12,15 @@
  */
 function kalturacuepoints_init() {
   drupal_add_js(drupal_get_path("module", "kaltura") . "/js/kaltura_player_controller.js");
+  $kaltura_client = KalturaHelpers::getKalturaClient();
+  if (!$kaltura_client) {
+    drupal_set_message(t('Failed to start Kaltura session. Please check your settings.'), 'error');
   }
+}
 
 /**
  * implementation of hook_field_display_node_alter()
  */
 function kalturacuepoints_field_display_node_alter(&$display, $context) {
 	//drupal_set_message('<pre>' . print_r($context, true) . '</pre>');
-	}
+}
