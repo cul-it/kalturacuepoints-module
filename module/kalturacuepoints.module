@@ -13,3 +13,10 @@
 function kalturacuepoints_init() {
   drupal_add_js(drupal_get_path("module", "kaltura") . "/js/kaltura_player_controller.js");
   }
+
+/**
+ * implementation of hook_node_view_alter()
+ */
+function kalturacuepoints_node_view_alter(&$build) {
+	drupal_set_message('<pre>' . print_r($build, true) . '</pre>');
+	}
