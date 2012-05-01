@@ -11,5 +11,5 @@
  * load kaltura stuff
  */
 function kalturacuepoints_init() {
-	drupal_set_message(t('hello from kalturacuepoints_init()'));
-	}
+  drupal_add_js(drupal_get_path("module", "kaltura") . "/js/kaltura_player_controller.js");
+  }
