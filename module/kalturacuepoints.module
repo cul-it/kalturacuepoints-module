@@ -15,8 +15,8 @@ function kalturacuepoints_init() {
   }
 
 /**
- * implementation of hook_node_view_alter()
+ * implementation of hook_field_display_node_alter()
  */
-function kalturacuepoints_node_view_alter(&$build) {
-	drupal_set_message('<pre>' . print_r($build, true) . '</pre>');
+function kalturacuepoints_field_display_node_alter(&$display, $context) {
+	drupal_set_message('<pre>' . print_r($context, true) . '</pre>');
 	}
