@@ -68,7 +68,7 @@ function kalturacuepoints_block_configure($delta = '') {
       '#type' => 'password',
       '#title' => t('Kaltura Partner password'),
       '#size' => 60,
-      '#description' => t('Kaltura password for the user eg. 111222.'),
+      '#description' => t('Kaltura password for the user.'),
       '#default_value' => variable_get('kalturacuepoints_secret',  ''),
     );
     $form['kalturacuepoints_admin_secret'] = array(
@@ -149,7 +149,7 @@ function kalturacuepoints_contents($which_block) {
 		drupal_set_message(t('Failed to start Kaltura session. Please check your settings.'), 'error');
 	  	}
 	  else {
-	  	$entryID = variable_get('kalturacuepoints_asset', t('1_b270ldha'));
+	  	$entryId = variable_get('kalturacuepoints_asset', t('1_b270ldha'));
 		//Get all Cue points
 		$filter = new KalturaCuePointFilter();
 		$filter->entryIdEqual = $entryId;
@@ -159,14 +159,13 @@ function kalturacuepoints_contents($which_block) {
 		$cuePoints = $results->objects;
 		usort($cuePoints, "kalturacuepoints_cmp");
 		
-		drupal_set_message(print_r($cuePoints, true)); // jgr
-		
-		/*
+		$currentChapterNum = 2;
 		if(isset($cuePoints[$currentChapterNum]))
 			$currentCuePoint = $cuePoints[$currentChapterNum];
 		else
 			$currentCuePoint = reset($cuePoints);
-		*/
+		
+		drupal_set_message(print_r($currentCuePoint, true)); // jgr
 
 	  	}
       return array('#markup' => variable_get('kalturacuepoints_asset',  t('A default value. This block was created at %time', array('%time' => date('c')))));
