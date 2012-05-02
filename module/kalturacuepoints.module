@@ -11,6 +11,17 @@ module_load_include('php', 'kaltura', 'kaltura_client/KalturaTypes');
 
 require_once(dirname(__FILE__) . "/KalturaCuePointClientPlugin.php");
 
+
+class KalturaSchemaType
+{
+	const SYNDICATION = "syndication";
+	const BULK_UPLOAD_XML = "bulkUploadXml.bulkUploadXML";
+	const BULK_UPLOAD_RESULT_XML = "bulkUploadXml.bulkUploadResultXML";
+	const DROP_FOLDER_XML = "dropFolderXmlBulkUpload.dropFolderXml";
+	const SERVE_API = "cuePoint.serveAPI";
+	const INGEST_API = "cuePoint.ingestAPI";
+}
+
 /**
  * load kaltura stuff
  */
