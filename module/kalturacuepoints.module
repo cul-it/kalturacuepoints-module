@@ -78,7 +78,6 @@ function kalturacuepoints_block_save($delta = '', $edit = array()) {
   return;
 }
 
-
 /**
  * Implements hook_block_view().
  *
