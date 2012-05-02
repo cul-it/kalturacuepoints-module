@@ -5,22 +5,8 @@
  * @file
  * Support for CuePoints in Kaltura Videos
  */
-module_load_include('php', 'kaltura', 'kaltura_client/KalturaClient');
-module_load_include('php', 'kaltura', 'kaltura_client/KalturaEnums');
-module_load_include('php', 'kaltura', 'kaltura_client/KalturaTypes');
 
 require_once(dirname(__FILE__) . "/KalturaCuePointClientPlugin.php");
-
-
-class KalturaSchemaType
-{
-	const SYNDICATION = "syndication";
-	const BULK_UPLOAD_XML = "bulkUploadXml.bulkUploadXML";
-	const BULK_UPLOAD_RESULT_XML = "bulkUploadXml.bulkUploadResultXML";
-	const DROP_FOLDER_XML = "dropFolderXmlBulkUpload.dropFolderXml";
-	const SERVE_API = "cuePoint.serveAPI";
-	const INGEST_API = "cuePoint.ingestAPI";
-}
 
 /**
  * load kaltura stuff
@@ -71,6 +57,34 @@ function kalturacuepoints_block_configure($delta = '') {
       '#description' => t('Kaltura ID for the asset eg. 1_b270ldha.'),
       '#default_value' => variable_get('kalturacuepoints_asset',  t('1_b270ldha')),
     );
+    $form['kalturacuepoints_partnerid'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Kaltura Partner ID'),
+      '#size' => 60,
+      '#description' => t('Kaltura Partner ID for the user eg. 111222.'),
+      '#default_value' => variable_get('kalturacuepoints_partnerid',  ''),
+    );
+    $form['kalturacuepoints_secret'] = array(
+      '#type' => 'password',
+      '#title' => t('Kaltura Partner password'),
+      '#size' => 60,
+      '#description' => t('Kaltura password for the user eg. 111222.'),
+      '#default_value' => variable_get('kalturacuepoints_secret',  ''),
+    );
+    $form['kalturacuepoints_admin_secret'] = array(
+      '#type' => 'password',
+      '#title' => t('Kaltura Administration Secret'),
+      '#size' => 60,
+      '#description' => t('Kaltura addmin secret from the KMC.'),
+      '#default_value' => variable_get('kalturacuepoints_admin_secret',  ''),
+    );
+    $form['kalturacuepoints_service_url'] = array(
+      '#type' => 'password',
+      '#title' => t('Kaltura Service URL'),
+      '#size' => 120,
+      '#description' => t('eg. http://www.kaltura.com'),
+      '#default_value' => variable_get('kalturacuepoints_service_url',  t('!url', array('!url' => 'http://www.kaltura.com')),
+    );
   }
   return $form;
 }
@@ -87,6 +101,10 @@ function kalturacuepoints_block_save($delta = '', $edit = array()) {
   if ($delta == 'kalturacuepoints_block') {
     // Have Drupal save the string to the database.
     variable_set('kalturacuepoints_asset', $edit['kalturacuepoints_asset']);
+    variable_set('kalturacuepoints_partnerid', $edit['kalturacuepoints_partnerid']);
+    variable_set('kalturacuepoints_secret', $edit['kalturacuepoints_secret']);
+    variable_set('kalturacuepoints_admin_secret', $edit['kalturacuepoints_admin_secret']);
+    variable_set('kalturacuepoints_service_url', $edit['kalturacuepoints_service_url']);
   }
   return;
 }
@@ -125,7 +143,7 @@ function kalturacuepoints_contents($which_block) {
       // (as here) are preferred though a simple string will work as well.
       // Block content created through the UI defaults to a string.
 	  
-	  $kaltura_client = KalturaHelpers::getKalturaClient();
+	  $kaltura_client = kalturacuepoints_getClient(true);
 	  if (!$kaltura_client) {
 		drupal_set_message(t('Failed to start Kaltura session. Please check your settings.'), 'error');
 	  	}
@@ -160,4 +178,25 @@ function kalturacuepoints_cmp($a, $b) {
 	   return 0;
    else
 	  return ($a->startTime < $b->startTime ? -1 : 1);
+}
+
+function kalturacuepoints_getClient($isAdmin = false, $userId = 'SomeUser') {
+	$partnerID = variable_get('kalturacuepoints_partnerid', '');
+	$kConfig = new KalturaConfiguration($partnerId);
+	$kConfig->serviceUrl = variable_get('kalturacuepoints_service_url',  t('!url', array('!url' => 'http://www.kaltura.com')));
+	$client = new KalturaClient($kConfig);
+	
+	$sessionType = ($isAdmin)? KalturaSessionType::ADMIN : KalturaSessionType::USER; 
+	try
+	{
+		$adminSecret = variable_get('kalturacuepoints_admin_secret', '');
+		$ks = $client->generateSession($adminSecret, $userId, $sessionType, $partnerId);
+		$client->setKs($ks);
+	}
+	catch(Exception $ex)
+	{
+		drupal_set_message(t("could not start session - check configurations in Kaltura Cue Points"));
+	}
+	
+	return $client;
 }
