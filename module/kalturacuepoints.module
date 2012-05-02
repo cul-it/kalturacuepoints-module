@@ -12,10 +12,6 @@
  */
 function kalturacuepoints_init() {
   drupal_add_js(drupal_get_path("module", "kaltura") . "/js/kaltura_player_controller.js");
-  $kaltura_client = KalturaHelpers::getKalturaClient();
-  if (!$kaltura_client) {
-    drupal_set_message(t('Failed to start Kaltura session. Please check your settings.'), 'error');
-  }
 }
 
 /**
@@ -113,6 +109,40 @@ function kalturacuepoints_contents($which_block) {
       // Block content can be returned in two formats: renderable arrays
       // (as here) are preferred though a simple string will work as well.
       // Block content created through the UI defaults to a string.
+	  
+	  $kaltura_client = KalturaHelpers::getKalturaClient();
+	  if (!$kaltura_client) {
+		drupal_set_message(t('Failed to start Kaltura session. Please check your settings.'), 'error');
+	  	}
+	  else {
+	  	$entryID = variable_get('kalturacuepoints_asset', t('1_b270ldha'));
+		//Get all Cue points
+		$filter = new KalturaCuePointFilter();
+		$filter->entryIdEqual = $entryId;
+		$pager = null;
+		$results = $client->cuePoint->listAction($filter, $pager);
+		
+		$cuePoints = $results->objects;
+		usort($cuePoints, "kalturacuepoints_cmp");
+		
+		drupal_set_message(print_r($cuePoints, true)); // jgr
+		
+		/*
+		if(isset($cuePoints[$currentChapterNum]))
+			$currentCuePoint = $cuePoints[$currentChapterNum];
+		else
+			$currentCuePoint = reset($cuePoints);
+		*/
+
+	  	}
       return array('#markup' => variable_get('kalturacuepoints_asset',  t('A default value. This block was created at %time', array('%time' => date('c')))));
   }
+}
+
+		
+function kalturacuepoints_cmp($a, $b) {
+   if ($a->startTime == $b->startTime)
+	   return 0;
+   else
+	  return ($a->startTime < $b->startTime ? -1 : 1);
 }
