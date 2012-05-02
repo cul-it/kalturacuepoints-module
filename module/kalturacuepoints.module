@@ -165,7 +165,33 @@ function kalturacuepoints_contents($which_block) {
 		else
 			$currentCuePoint = reset($cuePoints);
 		
+		/*
 		drupal_set_message(print_r($currentCuePoint, true)); // jgr
+		KalturaAdCuePoint Object
+(
+    [protocolType] => 0
+    [sourceUrl] => 
+    [adType] => 1
+    [title] => 
+    [endTime] => 
+    [duration] => 
+    [id] => 1_y675t5kc
+    [cuePointType] => adCuePoint.Ad
+    [status] => 1
+    [entryId] => 1_b270ldha
+    [partnerId] => 518251
+    [createdAt] => 1331652418
+    [updatedAt] => 1331652418
+    [tags] => vp2-ad
+    [startTime] => 420000
+    [userId] => batchUser
+    [partnerData] => 
+    [partnerSortValue] => 
+    [forceStop] => 
+    [thumbOffset] => 
+    [systemName] => 
+)
+*/
 
 	  	}
       return array('#markup' => variable_get('kalturacuepoints_asset',  t('A default value. This block was created at %time', array('%time' => date('c')))));
