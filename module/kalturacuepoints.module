@@ -6,7 +6,7 @@
  * Support for CuePoints in Kaltura Videos
  */
 
-require_once(dirname(__FILE__) . "/KalturaCuePointClientPlugin.php");
+require_once(dirname(__FILE__) . "/kaltura_php5/KalturaClient.php");
 
 /**
  * load kaltura stuff
