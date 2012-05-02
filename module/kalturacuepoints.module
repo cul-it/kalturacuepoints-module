@@ -35,6 +35,8 @@ function kalturacuepoints_block_info() {
 		'info' => t('Video Cue Points display'),
 		'cache' => DRUPAL_CACHE_PER_ROLE,
 	);
+	return $blocks;
+}
 
 /**
  * Implements hook_block_configure().
