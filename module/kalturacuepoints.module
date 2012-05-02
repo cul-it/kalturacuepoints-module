@@ -5,6 +5,10 @@
  * @file
  * Support for CuePoints in Kaltura Videos
  */
+module_load_include('php', 'kaltura', 'kaltura_client/KalturaClient');
+module_load_include('php', 'kaltura', 'kaltura_client/KalturaEnums');
+module_load_include('php', 'kaltura', 'kaltura_client/KalturaTypes');
+
 require_once(dirname(__FILE__) . "/KalturaCuePointClientPlugin.php");
 
 /**
