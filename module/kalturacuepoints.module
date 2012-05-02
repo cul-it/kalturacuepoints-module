@@ -83,7 +83,7 @@ function kalturacuepoints_block_configure($delta = '') {
       '#title' => t('Kaltura Service URL'),
       '#size' => 120,
       '#description' => t('eg. http://www.kaltura.com'),
-      '#default_value' => variable_get('kalturacuepoints_service_url',  t('!url', array('!url' => 'http://www.kaltura.com')),
+      '#default_value' => variable_get('kalturacuepoints_service_url',  t('!url', array('!url' => 'http://www.kaltura.com')))),
     );
   }
   return $form;
