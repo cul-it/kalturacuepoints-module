@@ -73,7 +73,7 @@ function kalturacuepoints_block_configure($delta = '') {
 function kalturacuepoints_block_save($delta = '', $edit = array()) {
   // We need to save settings from the configuration form.
   // We need to check $delta to make sure we are saving the right block.
-  if ($delta == 'kalturacuepoints_asset') {
+  if ($delta == 'kalturacuepoints_block') {
     // Have Drupal save the string to the database.
     variable_set('kalturacuepoints_asset', $edit['kalturacuepoints_asset']);
   }
