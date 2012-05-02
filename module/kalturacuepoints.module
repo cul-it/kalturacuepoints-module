@@ -124,7 +124,7 @@ function kalturacuepoints_contents($which_block) {
 		$filter = new KalturaCuePointFilter();
 		$filter->entryIdEqual = $entryId;
 		$pager = null;
-		$results = $client->cuePoint->listAction($filter, $pager);
+		$results = $kaltura_client->cuePoint->listAction($filter, $pager);
 		
 		$cuePoints = $results->objects;
 		usort($cuePoints, "kalturacuepoints_cmp");
