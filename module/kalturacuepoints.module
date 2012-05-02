@@ -182,7 +182,7 @@ function kalturacuepoints_cmp($a, $b) {
 }
 
 function kalturacuepoints_getClient($isAdmin = false, $userId = 'SomeUser') {
-	$partnerID = variable_get('kalturacuepoints_partnerid', '');
+	$partnerId = variable_get('kalturacuepoints_partnerid', '');
 	$kConfig = new KalturaConfiguration($partnerId);
 	$kConfig->serviceUrl = variable_get('kalturacuepoints_service_url',  t('!url', array('!url' => 'http://www.kaltura.com')));
 	$client = new KalturaClient($kConfig);
