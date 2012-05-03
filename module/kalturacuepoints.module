@@ -139,7 +139,6 @@ function kalturacuepoints_contents($which_block) {
 	case 'kalturacuepoints_block':
 		drupal_add_js('jQuery(document).ready(function () { alert("Hello kalturacuepoints!"); });', 'inline');
 		break;
-		}
     case 'kalturacuepoints_block2':
       // Modules would typically perform some database queries to fetch the
       // content for their blocks. Here, we'll just use the variable set in the
