@@ -195,9 +195,9 @@ function kalturacuepoints_contents($which_block) {
 		if (!empty($currentCuePoint)) {
 			$output = array('#markup' =>
 				t('entryId: @entryId tags: @tags startTime: @start',
-				array('@entryId' => $currentCuePoint['entryId'], 
-					'@tags' => $currentCuePoint['tags'],
-					'@start' => $currentCuePoint['startTime'],
+				array('@entryId' => $currentCuePoint::entryId, 
+					'@tags' => $currentCuePoint::tags,
+					'@start' => $currentCuePoint::startTime,
 					)
 				),
 			);
