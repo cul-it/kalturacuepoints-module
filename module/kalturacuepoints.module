@@ -140,6 +140,8 @@ function kalturacuepoints_contents($which_block) {
 		$seek = 1000;
 		$js = "jQuery(document).ready(function () { KalturaPlayerController.prototype.seek(\"$seek\"); });";
 		drupal_add_js($js, 'inline');
+		$js = "jQuery(document).ready(function () { KalturaPlayerController.prototype.play(); });";
+		drupal_add_js($js, 'inline');
 		drupal_add_js('jQuery(document).ready(function () { alert("Hello kalturacuepoints!"); });', 'inline');
 		break;
     case 'kalturacuepoints_block2':
