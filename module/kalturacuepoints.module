@@ -205,6 +205,7 @@ function kalturacuepoints_contents($which_block) {
 	  	}
       return array('#markup' => variable_get('kalturacuepoints_asset',  t('A default value. This block was created at %time', array('%time' => date('c')))));
   }
+  }
 }
 
 		
