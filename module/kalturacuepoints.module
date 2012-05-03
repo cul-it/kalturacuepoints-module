@@ -198,7 +198,7 @@ function kalturacuepoints_contents($which_block) {
 				array('@entryId' => $currentCuePoint['entryId'], 
 					'@tags' => $currentCuePoint['tags'],
 					'@start' => $currentCuePoint['startTime'],
-					),
+					)
 				),
 			);
 			return $output;	
