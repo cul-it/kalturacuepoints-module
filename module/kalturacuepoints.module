@@ -139,7 +139,7 @@ function kalturacuepoints_contents($which_block) {
   switch ($which_block) {
 	case 'kalturacuepoints_block':
 		$chaps = array( '#markup' =>
-			'<ul id="chapters"><li><a href="#">chapter 1</a></li></ul>',
+			'<ul id="chapters"><li><a data-chapterStartTime=1000 href="#">chapter 1</a></li></ul>',
 			);
 		
 		$js_inner = array( 'KalturaChaptersSample.jumpToTime( "13" );' );
