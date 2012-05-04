@@ -1,4 +1,39 @@
-﻿
+﻿// This function is called by the KDP once the KDP is ready to begin interacting with
+// javascript to see if javascript is also ready. If true is returned, KDP continues and
+// calls jsCallbackReady (see below), otherwise it continues to try every 100ms. The
+// name of the function is set using the "jsInterfaceReady" flashvar. If you do not set
+// this flashvar at all, jsCallbackReady will be called immediatly (not recommended).
+function kalturacuepoints_ready() {
+	alert('kalturacuepoints_ready');
+}
+
+function jsInterfaceReady() {
+	return true;
+	}
+
+// jsCallbackReady is called by KDP as soon as KDP is ready to begin interacting with
+// javascript. We place it in head to ensure that it's always available before KDP calls
+// it (depending on page structure, KDP may call jsCallbackReady before DOM is ready)
+function jsCallbackReady(player_id) {
+	// create a (global) reference to the KDP so we don't have to repeat querying the dom.
+	// we use the "window." prefix as a convention to point out that this var is global
+	window.kdp = document.getElementById(player_id);
+	kdp.addJsListener("playerPlayEnd", "tellFlashPlayerNextVideoID");
+	var autoplay = kdp_embed.auto_play;
+	if ((CC.autoplay == 0) || (CC.autoplay == "false") || (CC.autoplay == false)) {
+		autoplay = false;
+		}
+	if(autoplay) {
+		kdp.setKDPAttribute("configProxy.flashvars", "autoPlay", "true");
+		}
+	if (CC.startSecs > 0) {
+		kdp.setKDPAttribute('mediaProxy', 'mediaPlayFrom', CC.startSecs);
+		}
+	if (CC.endSecs > 0) {
+		kdp.setKDPAttribute('mediaProxy', 'mediaPlayTo', CC.endSecs);
+		}
+	}
+
 	var KalturaChaptersSample = {
 
 		myPlayer : null,
