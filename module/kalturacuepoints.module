@@ -13,7 +13,7 @@
  */
 function kalturacuepoints_init() {
 	//drupal_add_js(drupal_get_path("module", "kaltura") . "/js/kaltura_player_controller.js");
-	//drupal_add_js(drupal_get_path("module", "kalturacuepoints") . "/kalturacuepoints.js");
+	drupal_add_js(drupal_get_path("module", "kalturacuepoints") . "/kalturacuepoints.js");
 }
 
 /**
@@ -138,12 +138,12 @@ function kalturacuepoints_block_view($delta = '') {
 function kalturacuepoints_contents($which_block) {
   switch ($which_block) {
 	case 'kalturacuepoints_block':
-		/*
+		
 		$js_inner = array( 'KalturaChaptersSample.jumpToTime( "13" );' );
 		$js = "jQuery(document).ready(function () { " . implode(" ", $js_inner) . " });";
 		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
-		*/
 		
+		/*
 		$seek = 50000;
 		$playerId = 'kaltura_player_7488';
 		$js_inner = array( 
@@ -151,15 +151,10 @@ function kalturacuepoints_contents($which_block) {
 			"var pc = new KalturaPlayerController(\"$playerId\");",
 			'pc.play();',
 			'pc.seek("13");',
-			/*
-			'KalturaPlayerController.prototype.sendNotification", "doPlay");',
-			'KalturaPlayerController.prototype.queue("sendNotification", "doSeek",
-			 "' . $seek . '/1000");',
-			 */
 			);
 		$js = "jQuery(document).ready(function () { " . implode(" ", $js_inner) . " });";
 		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
-		
+		*/
 		/* works
 		$js = "jQuery(document).ready(function () { KalturaPlayerController.prototype.seek(\"$seek\"); });";
 		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
