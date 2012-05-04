@@ -147,7 +147,8 @@ function kalturacuepoints_contents($which_block) {
 		$seek = 50000;
 		$js_inner = array( 
 			'var pc = new KalturaPlayerController("kaltura_player_7488");',
-			'pc.seek("13")',
+			'pc.play();',
+			'pc.seek("13");',
 			/*
 			'KalturaPlayerController.prototype.sendNotification", "doPlay");',
 			'KalturaPlayerController.prototype.queue("sendNotification", "doSeek",
