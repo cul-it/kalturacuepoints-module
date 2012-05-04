@@ -97,7 +97,7 @@
     jQuery.noConflict();
     jQuery(document).ready(function() {
 		jQuery('#chapters a').click(function(e) {
-			var chapter = $(e.target);
+			var chapter = jQuery(e.target);
 	
 			//Change the page and skip to the chapter
 			KalturaChaptersSample.changePageData(chapter);
