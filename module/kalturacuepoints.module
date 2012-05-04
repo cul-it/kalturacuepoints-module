@@ -145,8 +145,10 @@ function kalturacuepoints_contents($which_block) {
 		*/
 		
 		$seek = 50000;
+		$playerId = 'kaltura_player_7488';
 		$js_inner = array( 
-			'var pc = new KalturaPlayerController("kaltura_player_7488");',
+			"var elt = document.getElementById(\"$playerId\");",
+			"var pc = new KalturaPlayerController(\"$playerId\");",
 			'pc.play();',
 			'pc.seek("13");',
 			/*
