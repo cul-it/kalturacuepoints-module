@@ -93,17 +93,20 @@
 		
 		//myPlayer.addJsListener("adOpportunity", "cuePointHandler"); used for Ad Cue Points
 	};
-	
-	$('#chapters a').click(function(e) {
-		var chapter = $(e.target);
 
-		//Change the page and skip to the chapter
-		KalturaChaptersSample.changePageData(chapter);
-		KalturaChaptersSample.jumpToTime(chapter.attr("data-chapterStartTime"));
-				
-		//Prevent redirect on the page
-		if(e.preventDefault) e.preventDefault();
-		e.returnValue = false; //Fix for IE
-		
-		return false;
+    jQuery.noConflict();
+    jQuery(document).ready(function() {
+		jQuery('#chapters a').click(function(e) {
+			var chapter = $(e.target);
+	
+			//Change the page and skip to the chapter
+			KalturaChaptersSample.changePageData(chapter);
+			KalturaChaptersSample.jumpToTime(chapter.attr("data-chapterStartTime"));
+					
+			//Prevent redirect on the page
+			if(e.preventDefault) e.preventDefault();
+			e.returnValue = false; //Fix for IE
+			
+			return false;
+		});
 	});
