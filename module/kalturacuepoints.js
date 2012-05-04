@@ -62,9 +62,9 @@
 		changePageData : function(cuePoint){
 			var chapterName = cuePoint.attr("data-chapterName");
 			
-			jQuery(document).('#ctitle').text(cuePoint.attr("data-chapterTitle"));
-			jQuery(document).('#cimage').attr("src", cuePoint.attr("data-chapterThumb"));
-			jQuery(document).('#ctags').text("Chapter Tags: " + cuePoint.attr("data-chapterTags"));
+			jQuery('#ctitle').text(cuePoint.attr("data-chapterTitle"));
+			jQuery('#cimage').attr("src", cuePoint.attr("data-chapterThumb"));
+			jQuery('#ctags').text("Chapter Tags: " + cuePoint.attr("data-chapterTags"));
 			this.switchActiveCue(cuePoint.attr("id"));
 						
 			//Change the URL without refreshing the page
@@ -96,8 +96,8 @@
 
     jQuery.noConflict();
     jQuery(document).ready(function() {
-		jQuery(document).('#chapters a').click(function(e) {
-			var chapter = jQuery(document).(e.target);
+		jQuery('#chapters a').click(function(e) {
+			var chapter = jQuery(e.target);
 	
 			//Change the page and skip to the chapter
 			KalturaChaptersSample.changePageData(chapter);
