@@ -138,13 +138,17 @@ function kalturacuepoints_block_view($delta = '') {
 function kalturacuepoints_contents($which_block) {
   switch ($which_block) {
 	case 'kalturacuepoints_block':
+		$js_inner = array( 'KalturaChaptersSample.jumpToTime( "13" );' );
+		$js = "jQuery(document).ready(function () { " . implode(" ", $js_inner) . " });";
+		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
+		/*
 		$seek = 50000;
 		$js_inner = array( 'KalturaPlayerController.prototype.queue("sendNotification", "doPlay");',
 			'KalturaPlayerController.prototype.queue("sendNotification", "doSeek", "' . $seek . '/1000");',
 			);
 		$js = "jQuery(document).ready(function () { " . implode(" ", $js_inner) . " });";
 		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
-		
+		*/
 		/* works
 		$js = "jQuery(document).ready(function () { KalturaPlayerController.prototype.seek(\"$seek\"); });";
 		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
