@@ -138,6 +138,10 @@ function kalturacuepoints_block_view($delta = '') {
 function kalturacuepoints_contents($which_block) {
   switch ($which_block) {
 	case 'kalturacuepoints_block':
+		$player = kalturacuepoints_player_embed_code('1_t9lgbvo6', 'my title', 'my descript');
+		$chaps = array( '#markup' => $player);
+		return $chaps;
+		/*
 		$chaps = array( '#markup' =>
 			'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
 			);
@@ -147,6 +151,7 @@ function kalturacuepoints_contents($which_block) {
 		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
 		
 		return $chaps;
+		*/
 		/*
 		$seek = 50000;
 		$playerId = 'kaltura_player_7488';
@@ -267,4 +272,55 @@ function kalturacuepoints_getClient($isAdmin = false, $userId = 'SomeUser') {
 	}
 	
 	return $client;
+}
+
+function kalturacuepoints_player_embed_code($entry, $title, $description, $partner = 518251, $sub_partner = 51825100, $player = 7929281 ) {
+	// emit code for a kaltura player
+	// $entry is the id of the asset like 1_t9lgbvo6
+	$str = <<<EOD
+<script type="text/javascript" 
+	src="http://www.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner">
+	</script>
+<object id="kaltura_player_1336413328" 
+	name="kaltura_player_1336413328" 
+	type="application/x-shockwave-flash" 
+	allowFullScreen="true" 
+	allowNetworking="all" 
+	allowScriptAccess="always" 
+	height="289" 
+	width="400" 
+	bgcolor="#000000" 
+	xmlns:dc="http://purl.org/dc/terms/" 
+	xmlns:media="http://search.yahoo.com/searchmonkey/media/" 
+	rel="media:video" 
+	resource="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry" 
+	data="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry">
+<param name="allowFullScreen" value="true" />
+<param name="allowNetworking" value="all" />
+<param name="allowScriptAccess" value="always" />
+<param name="bgcolor" value="#000000" />
+<param name="flashVars" value="streamerType=rtmp&externalInterfaceDisabled=false&jsInterfaceReadyFunc=jsInterfaceReady" />
+<param name="movie" 
+	value="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry" />
+<a rel="media:thumbnail" 
+	href="http://cdnbakmi.kaltura.com/p/$partner/sp/$sub_partner/thumbnail/entry_id/$entry/width/120/height/90/bgcolor/000000/type/2">
+	</a>
+<span property="dc:description" 
+	content="$description">
+	</span>
+<span property="media:title" 
+	content="$title">
+	</span>
+<span property="media:width" 
+	content="400">
+	</span>
+<span property="media:height" 
+	content="289">
+	</span>
+<span property="media:type" 
+	content="application/x-shockwave-flash">
+	</span>
+</object>
+EOD;
+	return $str;
 }
