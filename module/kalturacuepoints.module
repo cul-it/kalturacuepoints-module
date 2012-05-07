@@ -141,7 +141,7 @@ function kalturacuepoints_contents($which_block) {
 		$code = array(
 			'<div id="ctitle">Title</div>',
 			'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
-			kalturacuepoints_player_embed_code('1_t9lgbvo6', 'my title', 'my descript'),
+			kalturacuepoints_player_embed_code('1_t9lgbvo6', 'my title', 'my descript', 100, 110),
 			);
 		$chaps = array( '#markup' => implode(PHP_EOL, $code));
 		return $chaps;
@@ -278,9 +278,13 @@ function kalturacuepoints_getClient($isAdmin = false, $userId = 'SomeUser') {
 	return $client;
 }
 
-function kalturacuepoints_player_embed_code($entry, $title, $description, $partner = 518251, $sub_partner = 51825100, $player = 7929281 ) {
+function kalturacuepoints_player_embed_code($entry, $title, $description, 
+	$start_sec = 0, $end_sec = false, 
+	$partner = 518251, $sub_partner = 51825100, $player = 7929281 ) {
 	// emit code for a kaltura player
 	// $entry is the id of the asset like 1_t9lgbvo6
+	$playrange = "mediaProxy.mediaPlayFrom=$start_sec" . 
+		($end_sec === false) ? '' : "&mediaProxy.mediaPlayTo=$end_sec";
 	$str = <<<EOD
 <script type="text/javascript" 
 	src="http://www.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner">
@@ -303,7 +307,7 @@ function kalturacuepoints_player_embed_code($entry, $title, $description, $partn
 <param name="allowNetworking" value="all" />
 <param name="allowScriptAccess" value="always" />
 <param name="bgcolor" value="#000000" />
-<param name="flashVars" value="streamerType=rtmp&mediaProxy.mediaPlayFrom=25&externalInterfaceDisabled=false&jsInterfaceReadyFunc=jsInterfaceReady" />
+<param name="flashVars" value="streamerType=rtmp&$playrange&externalInterfaceDisabled=false&jsInterfaceReadyFunc=jsInterfaceReady" />
 <param name="movie" 
 	value="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry" />
 <a rel="media:thumbnail" 
