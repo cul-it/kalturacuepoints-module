@@ -14,6 +14,7 @@ function jsInterfaceReady() {
 // jsCallbackReady is called by KDP as soon as KDP is ready to begin interacting with
 // javascript. We place it in head to ensure that it's always available before KDP calls
 // it (depending on page structure, KDP may call jsCallbackReady before DOM is ready)
+/*
 function jsCallbackReady(player_id) {
 	// create a (global) reference to the KDP so we don't have to repeat querying the dom.
 	// we use the "window." prefix as a convention to point out that this var is global
@@ -33,6 +34,7 @@ function jsCallbackReady(player_id) {
 		kdp.setKDPAttribute('mediaProxy', 'mediaPlayTo', CC.endSecs);
 		}
 	}
+*/
 
 	var KalturaChaptersSample = {
 
