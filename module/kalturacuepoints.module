@@ -175,18 +175,18 @@ function kalturacuepoints_contents($which_block) {
  			else {
  				return array( '#markup' => t('Only show kalturacuepoints block on video and segment nodes.'));
  				}
-			$start = isset($node->$start_field['und'][0]['value']) ?
-				$node->$start_field['und'][0]['value'] : 0;
+			$start = isset($node->{$start_field}['und'][0]['value']) ?
+				$node->{$start_field}['und'][0]['value'] : 0;
 			$start = kalturacuepoints_to_seconds($start);
-			if (isset($node->$end_field['und'][0]['value'])) {
-				$end = kalturacuepoints_to_seconds($node->$end_field['und'][0]['value']);
+			if (isset($node->{$end_field}['und'][0]['value'])) {
+				$end = kalturacuepoints_to_seconds($node->{$end_field}['und'][0]['value']);
 				}
 			else {
 				$end = false;
 				}
   			$language = kalturacuepoints_language();
-			$title = $node->title_field[$language][0]['safe_value'];
-			$description = $node->body[$language][0]['safe_value'];
+			$title = $node->title_field["$language"][0]['safe_value'];
+			$description = $node->body["$language"][0]['safe_value'];
 			$code = array(
 				//'<div id="ctitle">Title</div>',
 				//'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
