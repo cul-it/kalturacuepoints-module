@@ -157,7 +157,7 @@ function kalturacuepoints_language() {
 function kalturacuepoints_playtime($playtime) {
 	$start = $playtime['und'][0]['value'];
 	$timezone = $playtime['und'][0]['timezone'];
-	$fmt_start = format_date(strtotime($start), 'custom', 'H:i:s');
+	$fmt_start = format_date(strtotime($start), 'custom', 'H:i:s', 'UTC');
 	$return_sec['start'] = $fmt_start;
 	return $return_sec;
 	
