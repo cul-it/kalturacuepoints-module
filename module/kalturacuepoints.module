@@ -152,6 +152,27 @@ function kalturacuepoints_language() {
 	}
 
 /**
+ * converts playtime cck field to seconds
+ */
+function kalturacuepoints_playtime($playtime) {
+	$start = array($playtime['und'][0]['value']);
+	$my_date = strtotime($start);
+	$tz_offset = strtotime(date("M d Y H:i:s")) - strtotime(gmdate("M d Y H:i:s"));
+    $my_date += $tz_offset;
+    $return_sec['start'] = kalturacuepoints_to_seconds(format_date($my_date, 'custom', 'H:i:s', NULL));
+	$end = array($playtime['und'][0]['value2']);
+	if (strcmp($start,$end) != 0) {
+		$my_date = strtotime($end);
+		$my_date += $tz_offset;
+		$return_sec['end'] = kalturacuepoints_to_seconds(format_date($my_date, 'custom', 'H:i:s', NULL));
+		}
+	else {
+		$return_sec['end'] = false;
+		}
+	return $return_sec;
+}
+
+/**
  * A module-defined block content function.
  */
 function kalturacuepoints_contents($which_block) {
@@ -185,46 +206,21 @@ function kalturacuepoints_contents($which_block) {
 				$end = false;
 				}
   			$language = kalturacuepoints_language();
-			$title = $node->title_field["$language"][0]['safe_value'];
-			$description = $node->body["$language"][0]['safe_value'];
+			$title = isset($node->title_field["$language"][0]['safe_value']) ?
+				$node->title_field["$language"][0]['safe_value'] : '';
+			$description = isset($node->body["$language"][0]['safe_value']) ?
+				$node->body["$language"][0]['safe_value'] : '';
+				
+			$time = kalturacuepoints_playtime($node->field_playtime);
+			
 			$code = array(
-				//'<div id="ctitle">Title</div>',
+				'<div id="ctitle">Title ' . $time . '</div>',
 				//'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
 				kalturacuepoints_player_embed_code($video_id, $title, $description, $start, $end),
 				);
 			$chaps = array( '#markup' => implode(PHP_EOL, $code));
 			return $chaps;
 			}
-		/*
-		$chaps = array( '#markup' =>
-			'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
-			);
-		
-		$js_inner = array( 'KalturaChaptersSample.jumpToTime( "13" );' );
-		$js = "jQuery(document).ready(function () { " . implode(" ", $js_inner) . " });";
-		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
-		
-		return $chaps;
-		*/
-		/*
-		$seek = 50000;
-		$playerId = 'kaltura_player_7488';
-		$js_inner = array( 
-			"var elt = document.getElementById(\"$playerId\");",
-			"var pc = new KalturaPlayerController(\"$playerId\");",
-			'pc.play();',
-			'pc.seek("13");',
-			);
-		$js = "jQuery(document).ready(function () { " . implode(" ", $js_inner) . " });";
-		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
-		*/
-		/* works
-		$js = "jQuery(document).ready(function () { KalturaPlayerController.prototype.seek(\"$seek\"); });";
-		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
-		$js = "jQuery(document).ready(function () { KalturaPlayerController.prototype.play(); });";
-		drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 10));
-		drupal_add_js('jQuery(document).ready(function () { alert("Hello kalturacuepoints!"); });', 'inline');
-		*/
 		break;
     case 'kalturacuepoints_block2':
       // Modules would typically perform some database queries to fetch the
