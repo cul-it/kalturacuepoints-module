@@ -148,7 +148,7 @@ function kalturacuepoints_to_seconds($hhmmss) {
  */
 function kalturacuepoints_language() {
 	global $language;
-	return $language->name;
+	return $language->language;
 	}
 
 /**
