@@ -161,7 +161,6 @@ function kalturacuepoints_playtime($playtime) {
 	
 	$my_date = strtotime("$start");
 	$unix_epoch = strtotime("1970-1-1 00:00:00");
-	$my_date += $unix_epoch;
 	$return_sec['start'] = format_date($my_date, 'custom', 'H:i:s', 'UTC');
 	//$tz_offset = strtotime(date("M d Y H:i:s")) - strtotime(gmdate("M d Y H:i:s"));
     //$my_date += $tz_offset;
