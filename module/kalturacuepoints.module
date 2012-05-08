@@ -133,18 +133,68 @@ function kalturacuepoints_block_view($delta = '') {
 }
 
 /**
+ * converts HH:MM:SS to seconds
+ */
+function kalturacuepoints_to_seconds($hhmmss) {
+	$parts = explode(':', $hhmmss);
+	$sec = array_pop($parts);
+	$sec += array_pop($parts) * 60;
+	$sec += array_pop($parts) * 60 * 60;
+	return $sec;
+}
+
+/**
+ * finds the currently selected language
+ */
+function kalturacuepoints_language() {
+	global $language;
+	return $language->name;
+	}
+
+/**
  * A module-defined block content function.
  */
 function kalturacuepoints_contents($which_block) {
   switch ($which_block) {
 	case 'kalturacuepoints_block':
-		$code = array(
-			'<div id="ctitle">Title</div>',
-			'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
-			kalturacuepoints_player_embed_code('1_t9lgbvo6', 'my title', 'my descript', 100, 110),
-			);
-		$chaps = array( '#markup' => implode(PHP_EOL, $code));
-		return $chaps;
+		// detect the current node (block shows only on video and segment nodes)
+		if ( arg(0) == 'node' && is_numeric(arg(1)) && ! arg(2) ) {
+  			$node = node_load(arg(1));
+  			if ($node->type == 'video') {
+  				$start_field = 'field_film_start';
+  				$end_field = 'field_film_end';
+  				$video_id = $node->field_kaltura_entry_id;
+  				}
+ 			else if ($node->type == 'segment') {
+  				$start_field = 'field_seg_start';
+  				$end_field = 'field_seg_end';
+  				$vnodeid = $node->field_seg_video['und'][0]['nid'];
+  				$vnode = load_load($vnodeid);
+  				$video_id = $vnode->field_kaltura_entry_id; 				
+ 				}
+ 			else {
+ 				return array( '#markup' => t('Only show kalturacuepoints block on video and segment nodes.'));
+ 				}
+			$start = isset($node->$start_field['und'][0]['value']) ?
+				$node->$start_field['und'][0]['value'] : 0;
+			$start = kalturacuepoints_to_seconds($start);
+			if (isset($node->$end_field['und'][0]['value'])) {
+				$end = kalturacuepoints_to_seconds($node->$end_field['und'][0]['value']);
+				}
+			else {
+				$end = false;
+				}
+  			$language = kalturacuepoints_language();
+			$title = $node->title_field[$language][0]['safe_value'];
+			$description $node->body[$language][0]['safe_value'];
+			$code = array(
+				//'<div id="ctitle">Title</div>',
+				//'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
+				kalturacuepoints_player_embed_code($video_id, $title, $description, $start, $end),
+				);
+			$chaps = array( '#markup' => implode(PHP_EOL, $code));
+			return $chaps;
+			}
 		/*
 		$chaps = array( '#markup' =>
 			'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
