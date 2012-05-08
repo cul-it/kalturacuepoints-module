@@ -156,10 +156,12 @@ function kalturacuepoints_language() {
  */
 function kalturacuepoints_playtime($playtime) {
 	$start = $playtime['und'][0]['value'];
-	$my_date = strtotime($start);
+	$timezone = $playtime['und'][0]['timezone'];
+	
+	$my_date = strtotime("$start $timezone");
 	$tz_offset = strtotime(date("M d Y H:i:s")) - strtotime(gmdate("M d Y H:i:s"));
-    $my_date += $tz_offset;
-    $return_sec['start'] = format_date($my_date, 'custom', 'H:i:s', NULL);
+    //$my_date += $tz_offset;
+    $return_sec['start'] = kalturacuepoints_to_seconds(format_date($my_date, 'custom', 'H:i:s', NULL));
 	$end = $playtime['und'][0]['value2'];
 	if (strcmp($start,$end) != 0) {
 		$my_date = strtotime($end);
