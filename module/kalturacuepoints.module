@@ -157,10 +157,11 @@ function kalturacuepoints_language() {
 function kalturacuepoints_playtime($playtime) {
 	$start = $playtime['und'][0]['value'];
 	$timezone = $playtime['und'][0]['timezone'];
+	$tz_offset = kalturacuepoints_get_timezone_offset('UTC', $timezone);
 	
 	$my_date = strtotime("$start $timezone");
-	$tz_offset = strtotime(date("M d Y H:i:s")) - strtotime(gmdate("M d Y H:i:s"));
-    //$my_date += $tz_offset;
+	//$tz_offset = strtotime(date("M d Y H:i:s")) - strtotime(gmdate("M d Y H:i:s"));
+    $my_date += $tz_offset;
     $return_sec['start'] = format_date($my_date, 'custom', 'H:i:s', NULL);
 	$end = $playtime['und'][0]['value2'];
 	if (strcmp($start,$end) != 0) {
@@ -172,6 +173,25 @@ function kalturacuepoints_playtime($playtime) {
 		$return_sec['end'] = false;
 		}
 	return $return_sec;
+}
+
+/**    Returns the offset from the origin timezone to the remote timezone, in seconds.
+ *    @param $remote_tz;
+ *    @param $origin_tz; If null the servers current timezone is used as the origin.
+ *    @return int;
+ */
+function kalturacuepoints_get_timezone_offset($remote_tz, $origin_tz = null) {
+    if($origin_tz === null) {
+        if(!is_string($origin_tz = date_default_timezone_get())) {
+            return false; // A UTC timestamp was returned -- bail out!
+        }
+    }
+    $origin_dtz = new DateTimeZone($origin_tz);
+    $remote_dtz = new DateTimeZone($remote_tz);
+    $origin_dt = new DateTime("now", $origin_dtz);
+    $remote_dt = new DateTime("now", $remote_dtz);
+    $offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
+    return $offset;
 }
 
 /**
