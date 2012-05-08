@@ -31,7 +31,7 @@ function kalturacuepoints_field_display_node_alter(&$display, $context) {
 function kalturacuepoints_block_info() {
 	$blocks['kalturacuepoints_block'] = array(
 		'info' => t('Video Cue Points display'),
-		'cache' => DRUPAL_CACHE_PER_ROLE,
+		'cache' => DRUPAL_CACHE_PER_PAGE,
 	);
 	return $blocks;
 }
@@ -186,7 +186,7 @@ function kalturacuepoints_contents($which_block) {
 				}
   			$language = kalturacuepoints_language();
 			$title = $node->title_field[$language][0]['safe_value'];
-			$description $node->body[$language][0]['safe_value'];
+			$description = $node->body[$language][0]['safe_value'];
 			$code = array(
 				//'<div id="ctitle">Title</div>',
 				//'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
