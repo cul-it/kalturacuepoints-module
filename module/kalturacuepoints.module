@@ -163,23 +163,23 @@ function kalturacuepoints_contents($which_block) {
   			if ($node->type == 'video') {
   				$start_field = 'field_film_start';
   				$end_field = 'field_film_end';
-  				$video_id = $node->field_kaltura_entry_id;
+  				$video_id = $node->field_kaltura_entry_id['und'][0]['safe_value'];
   				}
  			else if ($node->type == 'segment') {
   				$start_field = 'field_seg_start';
   				$end_field = 'field_seg_end';
   				$vnodeid = $node->field_seg_video['und'][0]['nid'];
   				$vnode = load_load($vnodeid);
-  				$video_id = $vnode->field_kaltura_entry_id; 				
+  				$video_id = $vnode->field_kaltura_entry_id['und'][0]['safe_value']; 				
  				}
  			else {
  				return array( '#markup' => t('Only show kalturacuepoints block on video and segment nodes.'));
  				}
-			$start = isset($node->{$start_field}['und'][0]['value']) ?
-				$node->{$start_field}['und'][0]['value'] : 0;
+			$start = isset($node->{$start_field}['und'][0]['safe_value']) ?
+				$node->{$start_field}['und'][0]['safe_value'] : 0;
 			$start = kalturacuepoints_to_seconds($start);
-			if (isset($node->{$end_field}['und'][0]['value'])) {
-				$end = kalturacuepoints_to_seconds($node->{$end_field}['und'][0]['value']);
+			if (isset($node->{$end_field}['und'][0]['safe_value'])) {
+				$end = kalturacuepoints_to_seconds($node->{$end_field}['und'][0]['safe_value']);
 				}
 			else {
 				$end = false;
