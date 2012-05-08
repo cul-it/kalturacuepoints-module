@@ -159,7 +159,7 @@ function kalturacuepoints_playtime($playtime) {
 	$timezone = $playtime['und'][0]['timezone'];
 	//$tz_offset = kalturacuepoints_get_timezone_offset('UTC', $timezone);
 	//$tz_offset = strtotime(date("M d Y H:i:s")) - strtotime(gmdate("M d Y H:i:s"));
-	$tz_offset = strtotime("1970-1-1 00:00:00") - strtotime(gmdate("1970-1-1 00:00:00"));
+	$tz_offset = strtotime("1970-1-1 00:00:00 $timezone") - strtotime(gmdate("1970-1-1 00:00:00"));
 	
 	$my_date = strtotime("$start") + $tz_offset;
 	
