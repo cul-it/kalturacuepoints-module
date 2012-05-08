@@ -155,7 +155,7 @@ function kalturacuepoints_language() {
  * converts playtime cck field to seconds
  */
 function kalturacuepoints_playtime($playtime) {
-	$start = array($playtime['und'][0]['value']);
+	$start = $playtime['und'][0]['value'];
 	$my_date = strtotime($start);
 	$tz_offset = strtotime(date("M d Y H:i:s")) - strtotime(gmdate("M d Y H:i:s"));
     $my_date += $tz_offset;
