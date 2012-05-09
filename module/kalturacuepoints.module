@@ -155,48 +155,26 @@ function kalturacuepoints_language() {
  * converts playtime cck field to seconds
  */
 function kalturacuepoints_playtime($playtime) {
-	$start = $playtime['und'][0]['value'];
-	$timezone = $playtime['und'][0]['timezone'];
-	//$tz_offset = kalturacuepoints_get_timezone_offset('UTC', $timezone);
-	//$tz_offset = strtotime(date("M d Y H:i:s")) - strtotime(gmdate("M d Y H:i:s"));
-	$tz_offset = strtotime("1970-1-1 00:00:00 $timezone") - strtotime(gmdate("1970-1-1 00:00:00"));
-	
-	$my_date = strtotime("$start") + $tz_offset;
-	
-	$unix_epoch = strtotime("1970-1-1 00:00:00");
-	$return_sec['start'] = format_date($my_date, 'custom', 'H:i:s');
-	//$tz_offset = strtotime(date("M d Y H:i:s")) - strtotime(gmdate("M d Y H:i:s"));
-    //$my_date += $tz_offset;
-    //$return_sec['start'] = format_date($my_date, 'custom', 'H:i:s', NULL);
-	$end = $playtime['und'][0]['value2'];
-	if (strcmp($start,$end) != 0) {
-		$my_date = strtotime($end);
-		$my_date += $tz_offset;
-		$return_sec['end'] = kalturacuepoints_to_seconds(format_date($my_date, 'custom', 'H:i:s', NULL));
-		}
-	else {
-		$return_sec['end'] = false;
+	/*
+	The date field (playtime) has to be set up as UTF. All fields
+	have to be stored in the database including seconds.
+	The display is H:i:s. Drupal defaults the year/month/day
+	to 0000-1-1 but we'll ignore that anyway.
+	start date is in value, end date is in value2
+	if no end date is specified it matches start date
+	*/
+	$return_sec = array('start' => 0, 'end' => false);
+	if (isset($playtime['und'][0]['value'])) {
+		$start = $playtime['und'][0]['value'];
+		$hms = array_pop(explode(' ',$start));
+		$return_sec['start'] = kalturacuepoints_to_seconds($hms);		
+		$end = $playtime['und'][0]['value2'];
+		if (strcmp($start,$end) != 0) {
+			$hms = array_pop(explode(' ',$end));
+			$return_sec['end'] = kalturacuepoints_to_seconds($hms);		
+			}
 		}
 	return $return_sec;
-}
-
-/**    Returns the offset from the origin timezone to the remote timezone, in seconds.
- *    @param $remote_tz;
- *    @param $origin_tz; If null the servers current timezone is used as the origin.
- *    @return int;
- */
-function kalturacuepoints_get_timezone_offset($remote_tz, $origin_tz = null) {
-    if($origin_tz === null) {
-        if(!is_string($origin_tz = date_default_timezone_get())) {
-            return false; // A UTC timestamp was returned -- bail out!
-        }
-    }
-    $origin_dtz = new DateTimeZone($origin_tz);
-    $remote_dtz = new DateTimeZone($remote_tz);
-    $origin_dt = new DateTime("now", $origin_dtz);
-    $remote_dt = new DateTime("now", $remote_dtz);
-    $offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
-    return $offset;
 }
 
 /**
