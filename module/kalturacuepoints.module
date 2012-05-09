@@ -211,15 +211,6 @@ function kalturacuepoints_contents($which_block) {
  			else {
  				return array( '#markup' => t('Only show kalturacuepoints block on video and segment nodes.'));
  				}
-			$start = isset($node->{$start_field}['und'][0]['safe_value']) ?
-				$node->{$start_field}['und'][0]['safe_value'] : 0;
-			$start = kalturacuepoints_to_seconds($start);
-			if (isset($node->{$end_field}['und'][0]['safe_value'])) {
-				$end = kalturacuepoints_to_seconds($node->{$end_field}['und'][0]['safe_value']);
-				}
-			else {
-				$end = false;
-				}
   			$language = kalturacuepoints_language();
 			$title = isset($node->title_field["$language"][0]['safe_value']) ?
 				$node->title_field["$language"][0]['safe_value'] : '';
@@ -231,7 +222,7 @@ function kalturacuepoints_contents($which_block) {
 			$code = array(
 				'<div id="ctitle">Title ' . $time['start'] . '</div>',
 				//'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
-				kalturacuepoints_player_embed_code($video_id, $title, $description, $start, $end),
+				kalturacuepoints_player_embed_code($video_id, $title, $description, $time['start'], $time['end']),
 				);
 			$chaps = array( '#markup' => implode(PHP_EOL, $code));
 			return $chaps;
