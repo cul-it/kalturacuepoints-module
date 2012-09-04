@@ -169,14 +169,12 @@ function kalturacuepoints_contents($which_block) {
 		// detect the current node (block shows only on video and segment nodes or video-test view)
 		$nid = FALSE;
 		if (arg(0) == 'node' && is_numeric(arg(1)) && ! arg(2)) {
+			// when node is showing
 			$nid = arg(1);
 			}
 		else if (preg_match('/video-test\/([\d]+)$/',request_uri(), $matches)) {
+			// when view is showing
 			$nid = $matches[1];
-			drupal_set_message("request1: " . request_uri());
-			}
-		else {
-			drupal_set_message("request2: " . request_uri());
 			}
 		if ($nid !== FALSE) {
   			$node = node_load($nid);
