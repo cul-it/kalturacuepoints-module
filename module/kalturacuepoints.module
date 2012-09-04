@@ -166,8 +166,9 @@ function kalturacuepoints_playtime($playtime) {
 function kalturacuepoints_contents($which_block) {
   switch ($which_block) {
 	case 'kalturacuepoints_block':
-		// detect the current node (block shows only on video and segment nodes)
-		if ( arg(0) == 'node' && is_numeric(arg(1)) && ! arg(2) ) {
+		// detect the current node (block shows only on video and segment nodes or video-test view)
+		if ( (arg(0) == 'node' && is_numeric(arg(1)) && ! arg(2)) ||
+			 (arg(0) == 'video-test' && is_numeric(arg(1)) && ! arg(2)) ) {
   			$node = node_load(arg(1));
   			if ($node->type == 'video') {
   				$start_field = 'field_film_start';
