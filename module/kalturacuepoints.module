@@ -173,9 +173,10 @@ function kalturacuepoints_contents($which_block) {
 			}
 		else if (preg_match('/video-test\/([\d]+)$/',request_uri(), $matches)) {
 			$nid = $matches[1];
+			drupal_set_message("request1: " . request_uri());
 			}
 		else {
-			drupal_set_message(request_uri());
+			drupal_set_message("request2: " . request_uri());
 			}
 		if ($nid !== FALSE) {
   			$node = node_load($nid);
