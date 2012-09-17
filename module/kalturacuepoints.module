@@ -177,7 +177,7 @@ function kalturacuepoints_contents($which_block) {
 			//$path = drupal_lookup_path('source', $matches[1]);
 			//drupal_set_message('kalturacuepoints_contents: ' . print_r($path, true));
 			$nid = $matches[1];
-			$path = request_uri()
+			$path = request_uri();
 			return array( '#markup' => t('kalturacuepoints_contents: '. $path . print_r($matches)));
 			}
 		if ($nid !== FALSE && (($node = node_load($nid)) !== FALSE)) {
