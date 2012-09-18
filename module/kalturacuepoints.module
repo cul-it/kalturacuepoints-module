@@ -213,7 +213,7 @@ function kalturacuepoints_contents($which_block) {
 			$time = kalturacuepoints_playtime($node->field_playtime);
 			
 			$code = array(
-				'<div id="ctitle">Title ' . $time['start'] . '</div>',
+				'<div id="ctitle">Title ' . $title . '</div>',
 				//'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
 				kalturacuepoints_player_embed_code($video_id, $title, $description, $time['start'], $time['end']),
 				);
