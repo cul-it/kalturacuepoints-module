@@ -173,12 +173,10 @@ function kalturacuepoints_contents($which_block) {
 			$nid = arg(1);
 			}
 		else if (preg_match('/\/([0-9]+)$/',request_uri(), $matches)) {
-			// when a view is showing - assuming the last argument in numeric!!!
+			// when a view is showing - assuming the last argument is numeric!!!
 			//$path = drupal_lookup_path('source', $matches[1]);
 			//drupal_set_message('kalturacuepoints_contents: ' . print_r($path, true));
 			$nid = $matches[1];
-			$path = request_uri();
-			return array( '#markup' => t('kalturacuepoints_contents: '. $path . print_r($matches,true)));
 			}
 		if ($nid !== FALSE && (($node = node_load($nid)) !== FALSE)) {
    			if ($node->type == 'video') {
