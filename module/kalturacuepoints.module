@@ -172,7 +172,7 @@ function kalturacuepoints_contents($which_block) {
 			// when node is showing
 			$nid = arg(1);
 			}
-		else if (preg_match('/[\d]+\/[\d]+\/([\d]+)$/',request_uri(), $matches)) {
+		else if (true || preg_match('/[\d]+\/[\d]+\/([\d]+)$/',request_uri(), $matches)) {
 			// when a view is showing - assuming 3rd argument is the alias!!!
 			//$path = drupal_lookup_path('source', $matches[1]);
 			//drupal_set_message('kalturacuepoints_contents: ' . print_r($path, true));
