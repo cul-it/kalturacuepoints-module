@@ -72,6 +72,20 @@ function kalturacuepoints_block_configure($delta = '') {
       '#description' => t('Kaltura ID for the video player eg. 1112223.'),
       '#default_value' => variable_get('kalturacuepoints_playerid',  ''),
     );
+   $form['kalturacuepoints_player_width'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Player Width in pixels'),
+      '#size' => 60,
+      '#description' => t('For the width and media:width of the embed code.'),
+      '#default_value' => variable_get('kalturacuepoints_player_width',  '400'),
+    );
+   $form['kalturacuepoints_player_height'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Player Height in pixels'),
+      '#size' => 60,
+      '#description' => t('For the height and media:height of the embed code.'),
+      '#default_value' => variable_get('kalturacuepoints_player_height',  '289'),
+    );
   }
   return $form;
 }
@@ -90,6 +104,8 @@ function kalturacuepoints_block_save($delta = '', $edit = array()) {
     variable_set('kalturacuepoints_partnerid', $edit['kalturacuepoints_partnerid']);
     variable_set('kalturacuepoints_subpartnerid', $edit['kalturacuepoints_subpartnerid']);
     variable_set('kalturacuepoints_playerid', $edit['kalturacuepoints_playerid']);
+    variable_set('kalturacuepoints_player_width', $edit['kalturacuepoints_player_width']);
+    variable_set('kalturacuepoints_player_height', $edit['kalturacuepoints_player_height']);
   }
   return;
 }
@@ -215,7 +231,12 @@ function kalturacuepoints_contents($which_block) {
 			$code = array(
 				'<div id="ctitle">' . $title . '</div>',
 				//'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
-				kalturacuepoints_player_embed_code($video_id, $title, $description, $time['start'], $time['end']),
+				kalturacuepoints_player_embed_code($video_id, $title, $description, $time['start'], $time['end'],
+					variable_get('kalturacuepoints_partnerid',''),
+					variable_get('kalturacuepoints_subpartnerid',''),
+					variable_get('kalturacuepoints_playerid',''),
+					variable_get('kalturacuepoints_player_width',''),
+					variable_get('kalturacuepoints_player_height','')
 				);
 			$chaps = array( '#markup' => implode(PHP_EOL, $code));
 			return $chaps;
@@ -226,7 +247,8 @@ function kalturacuepoints_contents($which_block) {
 
 function kalturacuepoints_player_embed_code($entry, $title, $description, 
 	$start_sec = 0, $end_sec = false, 
-	$partner = 518251, $sub_partner = 51825100, $player = 9524271 /*7929281*/ ) {
+	$partner = 518251, $sub_partner = 51825100, $player = 9524271 /*7929281*/,
+	$player_width = 400, $player_height = 289 ) {
 	// emit code for a kaltura player
 	// $entry is the id of the asset like 1_t9lgbvo6
 	$playrange = "mediaProxy.mediaPlayFrom=$start_sec";
@@ -243,8 +265,8 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
 	allowFullScreen="true" 
 	allowNetworking="all" 
 	allowScriptAccess="always" 
-	height="289" 
-	width="400" 
+	height="$player_height" 
+	width="$player_width" 
 	bgcolor="#000000" 
 	xmlns:dc="http://purl.org/dc/terms/" 
 	xmlns:media="http://search.yahoo.com/searchmonkey/media/" 
@@ -268,10 +290,10 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
 	content="$title">
 	</span>
 <span property="media:width" 
-	content="400">
+	content="$player_width">
 	</span>
 <span property="media:height" 
-	content="289">
+	content="$player_height">
 	</span>
 <span property="media:type" 
 	content="application/x-shockwave-flash">
