@@ -237,6 +237,7 @@ function kalturacuepoints_contents($which_block) {
 					variable_get('kalturacuepoints_playerid',''),
 					variable_get('kalturacuepoints_player_width',''),
 					variable_get('kalturacuepoints_player_height','')
+					)
 				);
 			$chaps = array( '#markup' => implode(PHP_EOL, $code));
 			return $chaps;
