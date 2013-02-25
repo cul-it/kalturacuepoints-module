@@ -166,11 +166,11 @@ function kalturacuepoints_playtime($playtime) {
 	if (isset($playtime['und'][0]['value'])) {
 		$start = $playtime['und'][0]['value'];
 		$hms = array_pop(explode(' ',$start));
-		$return_sec['start'] = kalturacuepoints_to_seconds($hms);		
+		$return_sec['start'] = kalturacuepoints_to_seconds($hms);
 		$end = $playtime['und'][0]['value2'];
 		if (strcmp($start,$end) != 0) {
 			$hms = array_pop(explode(' ',$end));
-			$return_sec['end'] = kalturacuepoints_to_seconds($hms);		
+			$return_sec['end'] = kalturacuepoints_to_seconds($hms);
 			}
 		}
 	return $return_sec;
@@ -196,8 +196,6 @@ function kalturacuepoints_contents($which_block) {
 			}
 		if ($nid !== FALSE && (($node = node_load($nid)) !== FALSE)) {
    			if ($node->type == 'video') {
-  				$start_field = 'field_film_start';
-  				$end_field = 'field_film_end';
   				if (isset($node->field_kaltura_entry_id['und'][0]['safe_value'])) {
   					$video_id = $node->field_kaltura_entry_id['und'][0]['safe_value'];
   					}
@@ -206,8 +204,6 @@ function kalturacuepoints_contents($which_block) {
   					}
   				}
  			else if ($node->type == 'segment') {
-  				$start_field = 'field_seg_start';
-  				$end_field = 'field_seg_end';
   				$vnodeid = $node->field_seg_video['und'][0]['nid'];
   				$vnode = node_load($vnodeid);
   				if (isset($vnode->field_kaltura_entry_id['und'][0]['safe_value'])) {
@@ -225,12 +221,11 @@ function kalturacuepoints_contents($which_block) {
 				$node->title_field["$language"][0]['safe_value'] : '';
 			$description = isset($node->body["$language"][0]['safe_value']) ?
 				$node->body["$language"][0]['safe_value'] : '';
-				
+
 			$time = kalturacuepoints_playtime($node->field_playtime);
-			
+
 			$code = array(
 				'<div id="ctitle">' . $title . '</div>',
-				//'<ul id="chapters"><li><a id="cp2" data-chapterStartTime="1000" href="#">chapter 2</a></li></ul>',
 				kalturacuepoints_player_embed_code($video_id, $title, $description, $time['start'], $time['end'],
 					variable_get('kalturacuepoints_partnerid',''),
 					variable_get('kalturacuepoints_subpartnerid',''),
@@ -246,8 +241,8 @@ function kalturacuepoints_contents($which_block) {
 		}
 }
 
-function kalturacuepoints_player_embed_code($entry, $title, $description, 
-	$start_sec = 0, $end_sec = false, 
+function kalturacuepoints_player_embed_code($entry, $title, $description,
+	$start_sec = 0, $end_sec = false,
 	$partner = 518251, $sub_partner = 51825100, $player = 9524271 /*7929281*/,
 	$player_width = 400, $player_height = 289 ) {
 	// emit code for a kaltura player
@@ -257,46 +252,46 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
 		$playrange .= "&mediaProxy.mediaPlayTo=$end_sec";
 		}
 	$str = <<<EOD
-<script type="text/javascript" 
+<script type="text/javascript"
 	src="http://www.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner">
 	</script>
-<object id="kaltura_player_1336413328" 
-	name="kaltura_player_1336413328" 
-	type="application/x-shockwave-flash" 
-	allowFullScreen="true" 
-	allowNetworking="all" 
-	allowScriptAccess="always" 
-	height="$player_height" 
-	width="$player_width" 
-	bgcolor="#000000" 
-	xmlns:dc="http://purl.org/dc/terms/" 
-	xmlns:media="http://search.yahoo.com/searchmonkey/media/" 
-	rel="media:video" 
-	resource="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry" 
+<object id="kaltura_player_1336413328"
+	name="kaltura_player_1336413328"
+	type="application/x-shockwave-flash"
+	allowFullScreen="true"
+	allowNetworking="all"
+	allowScriptAccess="always"
+	height="$player_height"
+	width="$player_width"
+	bgcolor="#000000"
+	xmlns:dc="http://purl.org/dc/terms/"
+	xmlns:media="http://search.yahoo.com/searchmonkey/media/"
+	rel="media:video"
+	resource="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry"
 	data="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry">
 <param name="allowFullScreen" value="true" />
 <param name="allowNetworking" value="all" />
 <param name="allowScriptAccess" value="always" />
 <param name="bgcolor" value="#000000" />
 <param name="flashVars" value="streamerType=rtmp&$playrange&externalInterfaceDisabled=false&jsInterfaceReadyFunc=jsInterfaceReady" />
-<param name="movie" 
+<param name="movie"
 	value="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry" />
-<a rel="media:thumbnail" 
+<a rel="media:thumbnail"
 	href="http://cdnbakmi.kaltura.com/p/$partner/sp/$sub_partner/thumbnail/entry_id/$entry/width/120/height/90/bgcolor/000000/type/2">
 	</a>
-<span property="dc:description" 
+<span property="dc:description"
 	content="$description">
 	</span>
-<span property="media:title" 
+<span property="media:title"
 	content="$title">
 	</span>
-<span property="media:width" 
+<span property="media:width"
 	content="$player_width">
 	</span>
-<span property="media:height" 
+<span property="media:height"
 	content="$player_height">
 	</span>
-<span property="media:type" 
+<span property="media:type"
 	content="application/x-shockwave-flash">
 	</span>
 </object>
