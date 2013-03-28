@@ -195,25 +195,25 @@ function kalturacuepoints_contents($which_block) {
 			$nid = $matches[1];
 			}
 		if ($nid !== FALSE && (($node = node_load($nid)) !== FALSE)) {
+   		if ($node->type == 'video') {
         $time = array('start' => 0, 'end' => FALSE);
-   			if ($node->type == 'video') {
-  				if (isset($node->field_kaltura_entry_id['und'][0]['safe_value'])) {
-  					$video_id = $node->field_kaltura_entry_id['und'][0]['safe_value'];
-  					}
-  				else {
-  					return array( '#markup' => t('No video entry.'));
-  					}
-  				}
+				if (isset($node->field_kaltura_entry_id['und'][0]['safe_value'])) {
+					$video_id = $node->field_kaltura_entry_id['und'][0]['safe_value'];
+					}
+				else {
+					return array( '#markup' => t('No video entry.'));
+					}
+				}
  			else if ($node->type == 'segment') {
-          $time = kalturacuepoints_playtime($node->field_playtime);
-  				$vnodeid = $node->field_seg_video['und'][0]['nid'];
-  				$vnode = node_load($vnodeid);
-  				if (isset($vnode->field_kaltura_entry_id['und'][0]['safe_value'])) {
-  					$video_id = $vnode->field_kaltura_entry_id['und'][0]['safe_value'];
-  					}
-  				else {
-  					return array( '#markup' => t('No video entry.'));
-  					}
+        $time = kalturacuepoints_playtime($node->field_playtime);
+				$vnodeid = $node->field_seg_video['und'][0]['nid'];
+				$vnode = node_load($vnodeid);
+				if (isset($vnode->field_kaltura_entry_id['und'][0]['safe_value'])) {
+					$video_id = $vnode->field_kaltura_entry_id['und'][0]['safe_value'];
+					}
+				else {
+					return array( '#markup' => t('No video entry.'));
+					}
  				}
  			else {
  				return array( '#markup' => t('Only show kalturacuepoints block on video and segment nodes.'));
