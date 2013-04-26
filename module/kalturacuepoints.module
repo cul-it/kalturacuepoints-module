@@ -86,6 +86,27 @@ function kalturacuepoints_block_configure($delta = '') {
       '#description' => t('For the height and media:height of the embed code.'),
       '#default_value' => variable_get('kalturacuepoints_player_height',  '289'),
     );
+   $form['kalturacuepoints_entry_id_field'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Field name for Kalture Entry ID'),
+      '#size' => 60,
+      '#description' => t('Internal name for the field containing the Kaltura ID for a video.'),
+      '#default_value' => variable_get('kalturacuepoints_entry_id_field',  'field_kaltura_entry_id'),
+    );
+   $form['kalturacuepoints_playtime_field'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Field name for segment start/stop times'),
+      '#size' => 60,
+      '#description' => t('Internal name for a Date field where the begin and end times are used to start and stop the video playback.'),
+      '#default_value' => variable_get('kalturacuepoints_playtime_field',  'field_playtime'),
+    );
+   $form['kalturacuepoints_segment_video_reference_field'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Field name for segment video reference'),
+      '#size' => 60,
+      '#description' => t('Internal name for a Node Reference field that points to a video node from a segment node.'),
+      '#default_value' => variable_get('kalturacuepoints_video_reference_field',  'field_seg_video'),
+    );
   }
   return $form;
 }
@@ -106,6 +127,10 @@ function kalturacuepoints_block_save($delta = '', $edit = array()) {
     variable_set('kalturacuepoints_playerid', $edit['kalturacuepoints_playerid']);
     variable_set('kalturacuepoints_player_width', $edit['kalturacuepoints_player_width']);
     variable_set('kalturacuepoints_player_height', $edit['kalturacuepoints_player_height']);
+    variable_set('kalturacuepoints_entry_id_field', $edit['kalturacuepoints_entry_id_field']);
+    variable_set('kalturacuepoints_playtime_field', $edit['kalturacuepoints_playtime_field']);
+    variable_set('kalturacuepoints_segment_video_reference_field',
+      $edit['kalturacuepoints_segment_video_reference_field']);
   }
   return;
 }
@@ -189,35 +214,37 @@ function kalturacuepoints_contents($which_block) {
 			$nid = arg(1);
 			}
 		else if (preg_match('/\/([0-9]+)$/',request_uri(), $matches)) {
-			// when a view is showing - assuming the last argument is numeric!!!
+			// when a view is showing - assuming an argument is numeric!!!
 			//$path = drupal_lookup_path('source', $matches[1]);
 			//drupal_set_message('kalturacuepoints_contents: ' . print_r($path, true));
 			$nid = $matches[1];
 			}
 		if ($nid !== FALSE && (($node = node_load($nid)) !== FALSE)) {
-   		if ($node->type == 'video') {
+      // try to find a kaltura id field
+      $entry_id_field = variable_get('kalturacuepoints_entry_id_field',  'field_kaltura_entry_id');
+      if (isset($node->$entry_id_field['und'][0]['safe_value'])) {
+        $video_id = $node->$entry_id_field['und'][0]['safe_value'];
         $time = array('start' => 0, 'end' => FALSE);
-				if (isset($node->field_kaltura_entry_id['und'][0]['safe_value'])) {
-					$video_id = $node->field_kaltura_entry_id['und'][0]['safe_value'];
-					}
-				else {
-					return array( '#markup' => t('No video entry.'));
-					}
 				}
- 			else if ($node->type == 'segment') {
-        $time = kalturacuepoints_playtime($node->field_playtime);
-				$vnodeid = $node->field_seg_video['und'][0]['nid'];
-				$vnode = node_load($vnodeid);
-				if (isset($vnode->field_kaltura_entry_id['und'][0]['safe_value'])) {
-					$video_id = $vnode->field_kaltura_entry_id['und'][0]['safe_value'];
-					}
-				else {
-					return array( '#markup' => t('No video entry.'));
-					}
- 				}
  			else {
- 				return array( '#markup' => t('Only show kalturacuepoints block on video and segment nodes.'));
+        // try to find the fields for a segment node
+        $playtime_field = variable_get('kalturacuepoints_playtime_field',  'field_playtime');
+        $video_reference_field = variable_get('kalturacuepoints_video_reference_field',  'field_seg_video');
+        if (isset($node->$playtime_field) && isset($node->$video_reference_field)) {
+          $time = kalturacuepoints_playtime($node->$playtime_field);
+  				$vnodeid = $node->$video_reference_field)['und'][0]['nid'];
+  				$vnode = node_load($vnodeid);
+  				if (isset($vnode->$entry_id_field['und'][0]['safe_value'])) {
+  					$video_id = $vnode->field_kaltura_entry_id['und'][0]['safe_value'];
+  					}
+  				else {
+  					return array( '#markup' => t('No video entry.'));
+  					}
  				}
+   			else {
+   				return array( '#markup' => t('Configure kalturacuepoints block field names.'));
+   				}
+        }
   		$language = kalturacuepoints_language();
 			$title = isset($node->title_field["$language"][0]['safe_value']) ?
 			   $node->title_field["$language"][0]['safe_value'] : '';
