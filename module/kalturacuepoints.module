@@ -223,10 +223,10 @@ function kalturacuepoints_get_video_reference($node) {
   $video_reference_field = variable_get('kalturacuepoints_video_reference_field',  'field_seg_video');
   if (isset($node) &&
     isset($node->$video_reference_field) &&
-    isset($node->$video_reference_field['und']) &&
-    isset($node->$video_reference_field['und'][0]) &&
-    isset($node->$video_reference_field['und'][0]['nid'])) {
-    $vnodeid = $node->$video_reference_field['und'][0]['nid'];
+    isset($node->{$video_reference_field}['und']) &&
+    isset($node->{$video_reference_field}['und'][0]) &&
+    isset($node->{$video_reference_field}['und'][0]['nid'])) {
+    $vnodeid = $node->{$video_reference_field}['und'][0]['nid'];
     $vnode = node_load($vnodeid);
     return kalturecuepoints_get_entry_id($vnode);
   }
@@ -239,11 +239,11 @@ function kalturacuepoints_get_video_reference($node) {
 function kalturacuepoints_get_playtime($node) {
   $playtime_field = variable_get('kalturacuepoints_playtime_field',  'field_playtime');
   if ($node &&
-    isset($node->$playtime_field) &&
-    isset($node->$playtime_field['und']) &&
-    isset($node->$playtime_field['und'][0]) &&
-    isset($node->$playtime_field['und'][0]['value'])) {
-    return kalturacuepoints_playtime($node->$playtime_field);
+    isset($node->{$playtime_field}) &&
+    isset($node->{$playtime_field}['und']) &&
+    isset($node->{$playtime_field}['und'][0]) &&
+    isset($node->{$playtime_field}['und'][0]['value'])) {
+    return kalturacuepoints_playtime($node->{$playtime_field});
   }
   return FALSE;
 }
