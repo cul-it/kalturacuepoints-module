@@ -207,11 +207,11 @@ function kalturacuepoints_playtime($playtime) {
 function kalturecuepoints_get_entry_id($node) {
   $entry_id_field = variable_get('kalturacuepoints_entry_id_field',  'field_kaltura_entry_id');
   if (isset($node) &&
-    isset($node->$entry_id_field) &&
-    isset($node->$entry_id_field['und']) &&
-    isset($node->$entry_id_field['und'][0]) &&
-    isset($node->$entry_id_field['und'][0]['safe_value'])) {
-    return $node->$entry_id_field['und'][0]['safe_value'];
+    isset($node->{$entry_id_field}) &&
+    isset($node->{$entry_id_field}['und']) &&
+    isset($node->{$entry_id_field}['und'][0]) &&
+    isset($node->{$entry_id_field}['und'][0]['safe_value'])) {
+    return $node->{$entry_id_field}['und'][0]['safe_value'];
   }
   return FALSE;
 }
