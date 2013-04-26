@@ -280,9 +280,9 @@ function kalturacuepoints_contents($which_block) {
         }
       }
      	else {
-   				return array( '#markup' => t('Configure kalturacuepoints block field names or hide this block!'));
-   				}
-        }
+   			return array( '#markup' => t('Configure kalturacuepoints block field names or hide this block!'));
+   		}
+
   		$language = kalturacuepoints_language();
 			$title = isset($node->title_field["$language"][0]['safe_value']) ?
 			   $node->title_field["$language"][0]['safe_value'] : '';
