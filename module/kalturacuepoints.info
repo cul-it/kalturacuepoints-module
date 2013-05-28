@@ -4,3 +4,4 @@ package = "Cornell University Library"
 core = 7.x
 
 files[] = kalturacuepoints.js
+files[] = kalturacuepoints_player_embed_code.inc
