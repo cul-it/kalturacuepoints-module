@@ -377,6 +377,9 @@ EOD;
 <a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
 <a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
 <script>
+mw.setConfig('EmbedPlayer.EnableIpadHTMLControls', true );
+mw.setConfig( 'EmbedPlayer.NativeControlsMobileSafari', false );
+mw.setConfig( 'KalturaSupport.LeadWithHTML5', true );
 kWidget.embed({
   "targetId": "kaltura_player_1369763645",
   "wid": "_518251",
