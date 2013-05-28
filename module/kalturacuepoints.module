@@ -289,6 +289,8 @@ function kalturacuepoints_contents($which_block) {
 			$description = isset($node->body["$language"][0]['safe_value']) ?
 			   $node->body["$language"][0]['safe_value'] : '';
 
+      module_load_include('inc', 'kalturacuepoints','kalturacuepoints_player_embed_code');
+
 			$code = array(
 				'<div id="ctitle">' . $title . '</div>',
 				kalturacuepoints_player_embed_code($video_id, $title, $description, $time['start'], $time['end'],
