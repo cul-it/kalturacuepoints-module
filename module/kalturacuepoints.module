@@ -289,8 +289,6 @@ function kalturacuepoints_contents($which_block) {
 			$description = isset($node->body["$language"][0]['safe_value']) ?
 			   $node->body["$language"][0]['safe_value'] : '';
 
-      module_load_include('inc', 'kalturacuepoints','kalturacuepoints_player_embed_code');
-
 			$code = array(
 				'<div id="ctitle">' . $title . '</div>',
 				kalturacuepoints_player_embed_code($video_id, $title, $description, $time['start'], $time['end'],
@@ -307,3 +305,62 @@ function kalturacuepoints_contents($which_block) {
 		break;
 		}
 }
+
+function kalturacuepoints_player_embed_code($entry, $title, $description,
+  $start_sec = 0, $end_sec = false,
+  $partner = 518251, $sub_partner = 51825100, $player = 9524271 /*7929281*/,
+  $player_width = 400, $player_height = 289 ) {
+  // emit code for a kaltura player
+  // $entry is the id of the asset like 1_t9lgbvo6
+  $playrange = "mediaProxy.mediaPlayFrom=$start_sec";
+  if ($end_sec !== false) {
+    $playrange .= "&mediaProxy.mediaPlayTo=$end_sec";
+    }
+  $str = <<<EOD
+<script type="text/javascript"
+  src="http://www.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner">
+  </script>
+<object id="kaltura_player_1336413328"
+  name="kaltura_player_1336413328"
+  type="application/x-shockwave-flash"
+  allowFullScreen="true"
+  allowNetworking="all"
+  allowScriptAccess="always"
+  height="$player_height"
+  width="$player_width"
+  bgcolor="#000000"
+  xmlns:dc="http://purl.org/dc/terms/"
+  xmlns:media="http://search.yahoo.com/searchmonkey/media/"
+  rel="media:video"
+  resource="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry"
+  data="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry">
+<param name="allowFullScreen" value="true" />
+<param name="allowNetworking" value="all" />
+<param name="allowScriptAccess" value="always" />
+<param name="bgcolor" value="#000000" />
+<param name="flashVars" value="streamerType=rtmp&$playrange&externalInterfaceDisabled=false&jsInterfaceReadyFunc=jsInterfaceReady" />
+<param name="movie"
+  value="http://www.kaltura.com/index.php/kwidget/cache_st/1336413328/wid/_$partner/uiconf_id/$player/entry_id/$entry" />
+<a rel="media:thumbnail"
+  href="http://cdnbakmi.kaltura.com/p/$partner/sp/$sub_partner/thumbnail/entry_id/$entry/width/120/height/90/bgcolor/000000/type/2">
+  </a>
+<span property="dc:description"
+  content="$description">
+  </span>
+<span property="media:title"
+  content="$title">
+  </span>
+<span property="media:width"
+  content="$player_width">
+  </span>
+<span property="media:height"
+  content="$player_height">
+  </span>
+<span property="media:type"
+  content="application/x-shockwave-flash">
+  </span>
+</object>
+EOD;
+  return $str;
+}
+
