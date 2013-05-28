@@ -361,29 +361,35 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
   </span>
 </object>
 EOD;
+
+  $playto = ($end_sec !== false) ? ', "mediaProxy.mediaPlayTo": "' . $end_sec . '"' : '';
   $str = <<<EOD
 <script src="http://cdnapi.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner"></script>
-<div id="kaltura_player_1369762292" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+<div id="kaltura_player_1369763645" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 <span itemprop="name" content="$title"></span>
 <span itemprop="description" content="$description"></span>
 <span itemprop="duration" content=""></span>
 <span itemprop="thumbnail" content=""></span>
-<span itemprop="width" content="$player_width"></span>
-<span itemprop="height" content="$player_height"></span>
+<span itemprop="width" content="640"></span>
+<span itemprop="height" content="385"></span>
 <a href="http://corp.kaltura.com/products/video-platform-features">Video Platform</a>
 <a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a>
 <a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
 <a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
 <script>
 kWidget.embed({
-  "targetId": "kaltura_player_1369762292",
+  "targetId": "kaltura_player_1369763645",
   "wid": "_518251",
   "uiconf_id": $player,
   "flashvars": {
-    "streamerType": "rtmp&$playrange",
-    "mediaProtocol": "rtmp"
+    "akamaiHD": {
+      "loadingPolicy": "preInitialize",
+      "asyncInit": "true"
+    },
+    "streamerType": "hdnetwork",
+    "mediaProxy.mediaPlayFrom": "$start_sec" $playto
   },
-  "cache_st": 1369762292,
+  "cache_st": 1369763645,
   "entry_id": "$entry"
 });
 </script>
