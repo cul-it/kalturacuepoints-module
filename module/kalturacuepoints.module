@@ -363,7 +363,7 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
 EOD;
 
   $playto = ($end_sec !== false) ? ', "mediaProxy.mediaPlayTo": "' . $end_sec . '"' : '';
-  $str = <<<EOD
+  $str_old_2 = <<<EOD
 <script src="http://cdnapi.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner"></script>
 <div id="kaltura_player_1369763645" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 <span itemprop="name" content="$title"></span>
@@ -396,6 +396,20 @@ kWidget.embed({
   "entry_id": "$entry"
 });
 </script>
+EOD;
+$str = <<<EOD
+<div id="kaltura_player_1369838100" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+<span itemprop="name" content="$title"></span>
+<span itemprop="description" content="$description"></span>
+<span itemprop="duration" content=""></span>
+<span itemprop="thumbnail" content=""></span>
+<span itemprop="width" content="$player_width"></span>
+<span itemprop="height" content="$player_height"></span>
+<a href="http://corp.kaltura.com/products/video-platform-features">Video Platform</a>
+<a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a>
+<a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
+<a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
+<script src="http://cdnapi.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner?autoembed=true&entry_id=$entry&playerId=kaltura_player_1369838100&cache_st=1369838100&width=$player_width&height=$player_height&flashvars[akamaiHD.loadingPolicy]=preInitialize&flashvars[akamaiHD.asyncInit]=true&flashvars[twoPhaseManifest]=true&flashvars[streamerType]=hdnetworkmanifest"></script>
 EOD;
   return $str;
 }
