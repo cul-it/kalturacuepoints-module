@@ -288,7 +288,7 @@ function kalturacuepoints_contents($which_block) {
         }
       }
      	else {
-        $msg = variable_get('kalturacuepoints_no_video_message_field', t('Configure kalturacuepoints block field names or hide this block!');
+        $msg = variable_get('kalturacuepoints_no_video_message_field', t('Configure kalturacuepoints block field names or hide this block!'));
    			return array( '#markup' => t($msg));
    		}
 
