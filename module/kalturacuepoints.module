@@ -112,7 +112,7 @@ function kalturacuepoints_block_configure($delta = '') {
       '#title' => t('Message to display when there is no video'),
       '#size' => 120,
       '#description' => t('When the block can not find a video to display show this.'),
-      '#default_value' => variable_get('kalturacuepoints_no_video_message_field', t('Configure kalturacuepoints block field names or hide this block!'),
+      '#default_value' => variable_get('kalturacuepoints_no_video_message_field', t('Configure kalturacuepoints block field names or hide this block!')),
     );
   }
   return $form;
