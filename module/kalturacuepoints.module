@@ -397,7 +397,7 @@ kWidget.embed({
 });
 </script>
 EOD;
-$str = <<<EOD
+$str2 = <<<EOD
 <div id="kaltura_player_1369838100" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 <span itemprop="name" content="$title"></span>
 <span itemprop="description" content="$description"></span>
@@ -410,6 +410,20 @@ $str = <<<EOD
 <a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
 <a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
 <script src="http://cdnapi.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner?autoembed=true&entry_id=$entry&playerId=kaltura_player_1369838100&cache_st=1369838100&width=$player_width&height=$player_height&flashvars[akamaiHD.loadingPolicy]=preInitialize&flashvars[akamaiHD.asyncInit]=true&flashvars[twoPhaseManifest]=true&flashvars[streamerType]=hdnetworkmanifest"></script>
+EOD;
+$str = <<<EOD
+<div id="kaltura_player_1369838100" style="width: 640px; height: 385px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+<span itemprop="name" content="518251_1368462072"></span>
+<span itemprop="description" content=""></span>
+<span itemprop="duration" content=""></span>
+<span itemprop="thumbnail" content=""></span>
+<span itemprop="width" content="640"></span>
+<span itemprop="height" content="385"></span>
+<a href="http://corp.kaltura.com/products/video-platform-features">Video Platform</a>
+<a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a>
+<a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
+<a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
+<script src="http://cdnapi.kaltura.com/p/518251/sp/51825100/embedIframeJs/uiconf_id/11104691/partner_id/518251?autoembed=true&entry_id=1_z8xr3219&playerId=kaltura_player_1369838100&cache_st=1369838100&width=640&height=385&flashvars[akamaiHD.loadingPolicy]=preInitialize&flashvars[akamaiHD.asyncInit]=true&flashvars[twoPhaseManifest]=true&flashvars[streamerType]=hdnetworkmanifest"></script>
 EOD;
   return $str;
 }
