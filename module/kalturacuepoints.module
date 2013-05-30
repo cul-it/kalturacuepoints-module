@@ -433,7 +433,7 @@ $str = <<<EOD
 <a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a>
 <a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
 <a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
-<script src="http://cdnapi.kaltura.com/p/518251/sp/51825100/embedIframeJs/uiconf_id/8679561/partner_id/518251?autoembed=true&entry_id=$entry&playerId=kaltura_player_1369925664&cache_st=1369925664&width=400&height=330&flashvars[streamerType]=rtmp&flashvars[mediaProtocol]=rtmpe"></script>
+<script src="http://cdnapi.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/8679561/partner_id/$partner?autoembed=true&entry_id=$entry&playerId=kaltura_player_1369925664&cache_st=1369925664&width=400&height=330&flashvars[streamerType]=rtmp&flashvars[mediaProtocol]=rtmpe"></script>
 EOD;
   return $str;
 }
