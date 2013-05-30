@@ -31,7 +31,7 @@ function kalturacuepoints_field_display_node_alter(&$display, $context) {
 function kalturacuepoints_block_info() {
 	$blocks['kalturacuepoints_block'] = array(
 		'info' => t('Video Cue Points display'),
-		'cache' => DRUPAL_NO_CACHE,
+		'cache' => DRUPAL_CACHE_PER_PAGE,
 	);
 	return $blocks;
 }
