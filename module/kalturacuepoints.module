@@ -406,6 +406,21 @@ kWidget.embed({
 });
 </script>
 EOD;
+$player = 8679561;
+$str_4 = <<<EOD
+<div id="kaltura_player_1369925664" style="width: 400px; height: 330px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+<span itemprop="name" content="Der_RausschmiB_von_Verdun"></span>
+<span itemprop="description" content=""></span>
+<span itemprop="duration" content=""></span>
+<span itemprop="thumbnail" content=""></span>
+<span itemprop="width" content="400"></span>
+<span itemprop="height" content="330"></span>
+<a href="http://corp.kaltura.com/products/video-platform-features">Video Platform</a>
+<a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a>
+<a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
+<a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
+<script src="http://cdnapi.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/8679561/partner_id/$partner?autoembed=true&entry_id=$entry&playerId=kaltura_player_1369925664&cache_st=1369925664&width=400&height=330&flashvars[streamerType]=rtmp&flashvars[mediaProtocol]=rtmpe"></script>
+EOD;
 $str_3 = <<<EOD
 <div id="kaltura_player_1369838100" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 <span itemprop="name" content="$title"></span>
@@ -420,20 +435,21 @@ $str_3 = <<<EOD
 <a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
 <script src="http://cdnapi.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner?autoembed=true&entry_id=$entry&playerId=kaltura_player_1369838100&cache_st=1369838100&width=$player_width&height=$player_height&flashvars[akamaiHD.loadingPolicy]=preInitialize&flashvars[akamaiHD.asyncInit]=true&flashvars[twoPhaseManifest]=true&flashvars[streamerType]=hdnetworkmanifest"></script>
 EOD;
-$player = 8679561;
+// new larger Captioning Chapter Player 640 x 444
+// player 9524271
 $str = <<<EOD
-<div id="kaltura_player_1369925664" style="width: 400px; height: 330px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
-<span itemprop="name" content="Der_RausschmiB_von_Verdun"></span>
-<span itemprop="description" content=""></span>
+<div id="kaltura_player_1369932496" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+<span itemprop="name" content="$title"></span>
+<span itemprop="description" content="$description"></span>
 <span itemprop="duration" content=""></span>
 <span itemprop="thumbnail" content=""></span>
-<span itemprop="width" content="400"></span>
-<span itemprop="height" content="330"></span>
+<span itemprop="width" content="$player_width"></span>
+<span itemprop="height" content="$player_height"></span>
 <a href="http://corp.kaltura.com/products/video-platform-features">Video Platform</a>
 <a href="http://corp.kaltura.com/Products/Features/Video-Management">Video Management</a>
 <a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
 <a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
-<script src="http://cdnapi.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/8679561/partner_id/$partner?autoembed=true&entry_id=$entry&playerId=kaltura_player_1369925664&cache_st=1369925664&width=400&height=330&flashvars[streamerType]=rtmp&flashvars[mediaProtocol]=rtmpe"></script>
+<script src="http://cdnapi.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner?autoembed=true&entry_id=$entry&playerId=kaltura_player_1369932496&cache_st=1369932496&width=$player_width&height=$player_height&flashvars[akamaiHD.loadingPolicy]=preInitialize&flashvars[akamaiHD.asyncInit]=true&flashvars[streamerType]=hdnetwork"></script>
 EOD;
   return $str;
 }
