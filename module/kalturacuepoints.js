@@ -1,4 +1,15 @@
-﻿// This function is called by the KDP once the KDP is ready to begin interacting with
+﻿(function ($) {
+  $(document).ready(function(){
+    var kdp = $('#kaltura_player_9511'); // already parsed
+    var timesec = 13;
+    if (kdp.length !== 0) {
+ 				kdp.sendNotification("doPlay");
+				kdp.sendNotification("doSeek", timesec/1000);
+    }
+  });
+})(jQuery);
+
+// This function is called by the KDP once the KDP is ready to begin interacting with
 // javascript to see if javascript is also ready. If true is returned, KDP continues and
 // calls jsCallbackReady (see below), otherwise it continues to try every 100ms. The
 // name of the function is set using the "jsInterfaceReady" flashvar. If you do not set
