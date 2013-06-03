@@ -149,10 +149,11 @@ function jsCallbackReady(player_id) {
 
 (function ($) {
   $(document).ready(function(){
-  	//jsCallbackReady('#kaltura_player_9511');
-  	var player = document.getElementsByClassName("kaltura-embed")[0];
-  	//var playerId = 'kaltura_player_4060';
-		//var player = document.getElementById(playerId);
+		//jsCallbackReady('#kaltura_player_9511');
+		var embed = document.getElementsByClassName("kaltura-embed")[0];
+		var obj = embed.getElementsByTagName("object")[0];
+		var playerId = obj.getAttribute('id');
+		var player = document.getElementById(playerId);
 		if (player != null) {
 			player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 			player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
@@ -162,7 +163,7 @@ function jsCallbackReady(player_id) {
 			KalturaChaptersSample.myPlayer = player;
 		}
 
-  	window.KalturaChaptersSample.jumpToTime(13);
+	window.KalturaChaptersSample.jumpToTime(13);
   });
 })(jQuery);
 
