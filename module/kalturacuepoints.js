@@ -1,6 +1,7 @@
 ﻿(function ($) {
   $(document).ready(function(){
-  	jsCallbackReady('#kaltura_player_9511');
+  	//jsCallbackReady('#kaltura_player_9511');
+  	window.KalturaChaptersSample.jumpToTime(13);
   });
 })(jQuery);
 
