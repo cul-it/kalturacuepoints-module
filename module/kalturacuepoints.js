@@ -156,6 +156,7 @@ function jsCallbackReady(player_id) {
 		jsCallbackReady(playerId);
 		var player = document.getElementById(playerId);
 		if (player != null) {
+			player.sendNotification("doPlay");
 			player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 			player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
 			player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
