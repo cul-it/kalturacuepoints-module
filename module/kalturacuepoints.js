@@ -118,7 +118,7 @@ function jsCallbackReady(player_id) {
 	}
 
 	// called by the KDP once it is ready to interact with javascript on the page:
-	var jsCallbackReady = function( playerId ) {
+/*	var jsCallbackReady = function( playerId ) {
 		var player = document.getElementById(playerId);
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
@@ -146,13 +146,14 @@ function jsCallbackReady(player_id) {
 			return false;
 		});
 	});
-
+*/
 (function ($) {
   $(document).ready(function(){
 		//jsCallbackReady('#kaltura_player_9511');
 		var embed = document.getElementsByClassName("kaltura-embed")[0];
 		var obj = embed.getElementsByTagName("object")[0];
 		var playerId = obj.getAttribute('id');
+		jsCallbackReady(playerId);
 		var player = document.getElementById(playerId);
 		if (player != null) {
 			player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
