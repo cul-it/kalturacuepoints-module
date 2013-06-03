@@ -150,14 +150,16 @@ function jsCallbackReady(player_id) {
 (function ($) {
   $(document).ready(function(){
   	//jsCallbackReady('#kaltura_player_9511');
-  	var playerId = '#kaltura_player_9511';
+  	var playerId = 'kaltura_player_9511';
 		var player = document.getElementById(playerId);
-		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
-		player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
-		player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
+		if (player != null) {
+			player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
+			player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
+			player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
 
-		// Cache a reference to kaltura player in a variable within my scope (my object)
-		KalturaChaptersSample.myPlayer = player;
+			// Cache a reference to kaltura player in a variable within my scope (my object)
+			KalturaChaptersSample.myPlayer = player;
+		}
 
   	window.KalturaChaptersSample.jumpToTime(13);
   });
