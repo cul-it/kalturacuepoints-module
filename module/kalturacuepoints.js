@@ -15,7 +15,7 @@ function jsInterfaceReady() {
 // javascript. We place it in head to ensure that it's always available before KDP calls
 // it (depending on page structure, KDP may call jsCallbackReady before DOM is ready)
 function jsCallbackReady(player_id) {
-
+alert(player_id);
 	// create a (global) reference to the KDP so we don't have to repeat querying the dom.
 	// we use the "window." prefix as a convention to point out that this var is global
 	window.kdp = document.getElementById(player_id);
@@ -119,6 +119,7 @@ function jsCallbackReady(player_id) {
 
 	// called by the KDP once it is ready to interact with javascript on the page:
 	var jsCallbackReady = function( playerId ) {
+		alert(playerId);
 		var player = document.getElementById(playerId);
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
