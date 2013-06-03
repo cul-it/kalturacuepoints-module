@@ -1,11 +1,4 @@
-﻿(function ($) {
-  $(document).ready(function(){
-  	//jsCallbackReady('#kaltura_player_9511');
-  	window.KalturaChaptersSample.jumpToTime(13);
-  });
-})(jQuery);
-
-// This function is called by the KDP once the KDP is ready to begin interacting with
+﻿// This function is called by the KDP once the KDP is ready to begin interacting with
 // javascript to see if javascript is also ready. If true is returned, KDP continues and
 // calls jsCallbackReady (see below), otherwise it continues to try every 100ms. The
 // name of the function is set using the "jsInterfaceReady" flashvar. If you do not set
@@ -153,3 +146,12 @@ function jsCallbackReady(player_id) {
 			return false;
 		});
 	});
+
+(function ($) {
+  $(document).ready(function(){
+  	//jsCallbackReady('#kaltura_player_9511');
+  	window.KalturaChaptersSample.jumpToTime(13);
+  });
+})(jQuery);
+
+
