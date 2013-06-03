@@ -154,6 +154,10 @@ alert(player_id);
 		var embed = document.getElementsByClassName("kaltura-embed")[0];
 		var obj = embed.getElementsByTagName("object")[0];
 		var playerId = obj.getAttribute('id');
+		/*
+		Seek to: <input type="text" size="4" id="seekto" value="25"/><button onclick="$('#kdp3').get(0).sendNotification('doSeek', parseFloat($('#seekto').val()));return false;">Seek</button>
+		 */
+		embed.get(0).sendNotificaton('doSeek', parseFloat(13).val());
 		//jsCallbackReady(playerId);
 /*		var player = document.getElementById(playerId);
 		if (player != null) {
