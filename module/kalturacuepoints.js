@@ -150,7 +150,7 @@ function jsCallbackReady(player_id) {
 (function ($) {
   $(document).ready(function(){
   	//jsCallbackReady('#kaltura_player_9511');
-  	var playerId = 'kaltura_player_9511';
+  	var playerId = 'kaltura_player_4060';
 		var player = document.getElementById(playerId);
 		if (player != null) {
 			player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
