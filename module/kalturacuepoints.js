@@ -154,7 +154,7 @@ alert(player_id);
 		var embed = document.getElementsByClassName("kaltura-embed")[0];
 		var obj = embed.getElementsByTagName("object")[0];
 		var playerId = obj.getAttribute('id');
-		jsCallbackReady(playerId);
+		//jsCallbackReady(playerId);
 /*		var player = document.getElementById(playerId);
 		if (player != null) {
 			player.sendNotification("doPlay");
