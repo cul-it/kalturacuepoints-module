@@ -155,7 +155,7 @@ alert(player_id);
 		var obj = embed.getElementsByTagName("object")[0];
 		var playerId = obj.getAttribute('id');
 		jsCallbackReady(playerId);
-		var player = document.getElementById(playerId);
+/*		var player = document.getElementById(playerId);
 		if (player != null) {
 			player.sendNotification("doPlay");
 			player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
@@ -167,7 +167,7 @@ alert(player_id);
 		}
 
 	window.KalturaChaptersSample.jumpToTime(13);
-  });
+*/  });
 })(jQuery);
 
 
