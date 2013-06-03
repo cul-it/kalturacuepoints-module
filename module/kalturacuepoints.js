@@ -1,6 +1,6 @@
 ﻿(function ($) {
   $(document).ready(function(){
-    var window.kdp = document.getElementById('#kaltura_player_9511'); // already parsed
+    window.kdp = document.getElementById('#kaltura_player_9511'); // already parsed
     var timesec = 13;
     if (kdp.length !== 0) {
  				kdp.sendNotification("doPlay");
