@@ -1,11 +1,6 @@
 ﻿(function ($) {
   $(document).ready(function(){
-    window.kdp = document.getElementById('#kaltura_player_9511'); // already parsed
-    var timesec = 13;
-    if (kdp.length !== 0) {
- 				kdp.sendNotification("doPlay");
-				kdp.sendNotification("doSeek", timesec/1000);
-    }
+  	jsCallbackReady('#kaltura_player_9511');
   });
 })(jQuery);
 
