@@ -151,13 +151,11 @@ alert(player_id);
 (function ($) {
   $(document).ready(function(){
 		//jsCallbackReady('#kaltura_player_9511');
-		var embed = document.getElementsByClassName("kaltura-embed")[0];
-		var obj = embed.getElementsByTagName("object")[0];
-		var playerId = obj.getAttribute('id');
-		/*
-		Seek to: <input type="text" size="4" id="seekto" value="25"/><button onclick="$('#kdp3').get(0).sendNotification('doSeek', parseFloat($('#seekto').val()));return false;">Seek</button>
-		 */
-		obj.sendNotificaton('doSeek', parseFloat(13));
+		// var embed = document.getElementsByClassName("kaltura-embed")[0];
+		// var obj = embed.getElementsByTagName("object")[0];
+		// var playerId = obj.getAttribute('id');
+		// Seek to: <input type="text" size="4" id="seekto" value="25"/><button onclick="$('#kdp3').get(0).sendNotification('doSeek', parseFloat($('#seekto').val()));return false;">Seek</button>
+		// obj.sendNotificaton('doSeek', parseFloat(13));
 		//jsCallbackReady(playerId);
 /*		var player = document.getElementById(playerId);
 		if (player != null) {
