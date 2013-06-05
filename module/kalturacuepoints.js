@@ -132,7 +132,7 @@ alert(player_id + ' from function');
 		KalturaChaptersSample.myPlayer = player;
 
 		player.sendNotification("doPlay");
-		player.sendNotificaton('doSeek', parseFloat(13));
+		player.sendNotificaton('doSeek', parseFloat(130));
 
 		//myPlayer.addJsListener("adOpportunity", "cuePointHandler"); used for Ad Cue Points
 	};
