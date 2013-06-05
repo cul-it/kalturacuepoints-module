@@ -117,11 +117,6 @@ alert(player_id + ' from function');
 		}
 	}
 
-	function getName() {
-var entry_name = kdp.<i class="search-keyword" style="background-color: yellow;">evaluate</i>('{mediaProxy.entry.name}');
-    alert('Entry name: '+entry_name);
-}
-
 	// called by the KDP once it is ready to interact with javascript on the page:
 	var jsCallbackReady = function( playerId ) {
 		window.kdp = document.getElementById(playerId);
