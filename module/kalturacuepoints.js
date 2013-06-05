@@ -123,7 +123,7 @@ alert(player_id + ' from function');
 		var embed = document.getElementsByClassName("kaltura-embed")[0];
 		var obj = embed.getElementsByTagName("object")[0];
 		var playerId2 = obj.getAttribute('id');
-		var player = document.getElementById(playerId);
+		var player = document.getElementById(playerId2);
 		alert(playerId + ' from dynamic callback - real id: ' + playerId2);
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
@@ -133,7 +133,7 @@ alert(player_id + ' from function');
 		KalturaChaptersSample.myPlayer = player;
 
 		player.sendNotification("doPlay");
-		player.sendNotificaton('doSeek', parseFloat('5.992'));
+		player.sendNotification('doSeek', parseFloat('5.992'));
 		player.jumpToTime('5992');
 
 		//myPlayer.addJsListener("adOpportunity", "cuePointHandler"); used for Ad Cue Points
