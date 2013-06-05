@@ -132,7 +132,7 @@ alert(player_id + ' from function');
 		// Cache a reference to kaltura player in a variable within my scope (my object)
 		KalturaChaptersSample.myPlayer = player;
 
-		player.sendNotification("doPlay");
+		//player.sendNotification("doPlay");
 		player.sendNotification('doSeek', parseFloat('5.992'));
 		player.jumpToTime('5992');
 
