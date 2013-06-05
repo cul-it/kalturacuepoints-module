@@ -13,7 +13,7 @@
  */
 function kalturacuepoints_init() {
 	//drupal_add_js(drupal_get_path("module", "kaltura") . "/js/kaltura_player_controller.js");
-	//drupal_add_js(drupal_get_path("module", "kalturacuepoints") . "/kalturacuepoints.js");
+	drupal_add_js(drupal_get_path("module", "kalturacuepoints") . "/kalturacuepoints.js");
 }
 
 /**
