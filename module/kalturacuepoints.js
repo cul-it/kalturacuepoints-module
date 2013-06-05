@@ -119,8 +119,11 @@ alert(player_id + ' from function');
 
 	// called by the KDP once it is ready to interact with javascript on the page:
 	var jsCallbackReady = function( playerId ) {
-		alert(playerId + ' from dynamic callback');
-		var player = document.getElementById(playerId);
+		var embed = document.getElementsByClassName("kaltura-embed")[0];
+		var obj = embed.getElementsByTagName("object")[0];
+		var playerId2 = obj.getAttribute('id');
+		var player = document.getElementById(playerId2);
+		alert(playerId + ' from dynamic callback - real id: ' + playerId2);
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
 		player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
