@@ -133,6 +133,7 @@ alert(player_id + ' from function');
 
 		player.sendNotification("doPlay");
 		player.sendNotificaton('doSeek', parseFloat('5.992'));
+		player.jumpToTime('5992');
 
 		//myPlayer.addJsListener("adOpportunity", "cuePointHandler"); used for Ad Cue Points
 	};
