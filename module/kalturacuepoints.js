@@ -128,6 +128,9 @@ alert(player_id + ' from function');
 		// Cache a reference to kaltura player in a variable within my scope (my object)
 		KalturaChaptersSample.myPlayer = player;
 
+		player.sendNotification("doPlay");
+		player.sendNotificaton('doSeek', parseFloat(13));
+
 		//myPlayer.addJsListener("adOpportunity", "cuePointHandler"); used for Ad Cue Points
 	};
 
