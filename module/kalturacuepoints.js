@@ -117,12 +117,18 @@ alert(player_id + ' from function');
 		}
 	}
 
+	function getName() {
+var entry_name = kdp.<i class="search-keyword" style="background-color: yellow;">evaluate</i>('{mediaProxy.entry.name}');
+    alert('Entry name: '+entry_name);
+}
+
 	// called by the KDP once it is ready to interact with javascript on the page:
 	var jsCallbackReady = function( playerId ) {
+		window.kdp = document.getElementById(playerId);
 		var embed = document.getElementsByClassName("kaltura-embed")[0];
 		var obj = embed.getElementsByTagName("object")[0];
 		var playerId2 = obj.getAttribute('id');
-		var player = document.getElementById(playerId2);
+		var player = document.getElementById(playerId);
 		alert(playerId + ' from dynamic callback - real id: ' + playerId2);
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
