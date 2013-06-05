@@ -68,7 +68,7 @@ alert(player_id + ' from function');
 		doFirstPlay: function() {
 			KalturaChaptersSample.firstLoad = true;
 			//this.myPlayer.sendNotification("doPlay");
-			this.jumpToTime(15);
+			this.jumpToTime(15000);
 		},
 
 		jumpToTime : function ( timesec ) {
