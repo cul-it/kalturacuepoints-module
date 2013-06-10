@@ -17,6 +17,8 @@ var KalturaChaptersSample = {
 		myPlayer : null,
 		currentCue : null,
 		firstLoad : false,
+		segmentStart : null,
+		segmentEnd : null,
 
 		playerPlaying: function() {
 			if( KalturaChaptersSample.firstLoad ) {
@@ -93,6 +95,14 @@ var KalturaChaptersSample = {
 
 			}
 		}
+
+	updatePlayheadHandler : function(data, id) {
+    // data = the player's progress time in seconds
+    // id = the ID of the player that fired the notification;
+    alert('updatePlayhead ' + data + ':' + id);
+    }
+}
+
 	}
 
 	// called by the KDP once it is ready to interact with javascript on the page:
@@ -106,6 +116,7 @@ var KalturaChaptersSample = {
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
 		player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
+		player.addJsListener("playerUpdatePlayhead", "KalturaChaptersSample.updatePlayheadHandler");
 
 		// Cache a reference to kaltura player in a variable within my scope (my object)
 		KalturaChaptersSample.myPlayer = player;
