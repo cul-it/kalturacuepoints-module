@@ -26,7 +26,7 @@ var KalturaChaptersSample = {
 
 				// find the active segment
 				// <div class="field-content  film-segment"><a href="/conversations/mueller/film/109/segment/1776" class="active"><span data-segmenttimes="00:20:53 to 00:38:22">Politics, Art, and Mass Movements</span></a></div>
-				var element = $("div.film-segment a.active");
+				var element = document.getElementsByClassName("film-segment").getElementsByClassName("active");
 				var timerange = element.getAttribute("data-segmenttimes");
 				var tparts = timerange.split(" ");
 				var hhmmss = tparts[0].split(":");
