@@ -99,7 +99,10 @@ var KalturaChaptersSample = {
 	updatePlayheadHandler : function(data, id) {
     // data = the player's progress time in seconds
     // id = the ID of the player that fired the notification;
-    alert('updatePlayhead ' + data + ':' + id);
+    //alert('updatePlayhead ' + data + ':' + id);
+    if ((this.segmentEnd != null) && (data > this.segmentEnd)) {
+    	KalturaChaptersSample.myPlayer.sendNotification("doPause");
+    }
 	}
 	}
 
