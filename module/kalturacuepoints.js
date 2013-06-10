@@ -23,31 +23,25 @@ var KalturaChaptersSample = {
 		playerPlaying: function() {
 			if( KalturaChaptersSample.firstLoad ) {
 				KalturaChaptersSample.firstLoad = false;
-				var lastIndex = document.URL.lastIndexOf('enterprise');
 
-				var chapterNum = 0;
+				// find the active segment
+				// <div class="field-content  film-segment"><a href="/conversations/mueller/film/109/segment/1776" class="active"><span data-segmenttimes="00:20:53 to 00:38:22">Politics, Art, and Mass Movements</span></a></div>
+				var element = $(div.film-segment a.active);
+				var timerange = element.getAttribute("data-segmenttimes");
+				var tparts = timerange.split(" ");
+				var hhmmss = tparts[0].split(":");
+				this.segmentStart = (hhmmss[0] * 3600 + hhmmss[1] * 60 + hhmmss[2]) * 1000;
+				hhmmss = tparts[2].split(":");
+				this.segmentEnd = (hhmmss[0] * 3600 + hhmmss[1] * 60 + hhmmss[2]) * 1000;
 
-				if(lastIndex != -1)
-				{
-					xUrl = document.URL.substr(lastIndex + 11); //Remove the 'enterprise/' from the string
-					urlParts = xUrl.split("-");
-					chapterNum = urlParts[0];
-				}
-
-				var element = $('ul li a').get(chapterNum);
-				this.switchActiveCue(element.id);
-				this.jumpToTime(element.getAttribute("data-chapterStartTime"));
-
-				setTimeout( function() {
-					KalturaChaptersSample.myPlayer.sendNotification("doPause");
-				}, 50);
+				this.jumpToTime(this.segmentStart);
 			}
 		},
 
 		doFirstPlay: function() {
 			KalturaChaptersSample.firstLoad = true;
 			//this.myPlayer.sendNotification("doPlay");
-			this.jumpToTime(15000);
+			//this.jumpToTime(15000);
 		},
 
 		jumpToTime : function ( timesec ) {
@@ -113,7 +107,7 @@ var KalturaChaptersSample = {
 		var obj = embed.getElementsByTagName("object")[0];
 		var playerId2 = obj.getAttribute('id');
 		var player = document.getElementById(playerId2);
-		alert(playerId + ' from dynamic callback - real id: ' + playerId2);
+		//alert(playerId + ' from dynamic callback - real id: ' + playerId2);
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("cuePointReached", "KalturaChaptersSample.cuePointHandler");
 		player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
