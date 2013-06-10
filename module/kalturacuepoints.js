@@ -8,34 +8,11 @@ function kalturacuepoints_ready() {
 }
 
 function jsInterfaceReady() {
+	alert('jsInterfaceReady');
 	return true;
 	}
 
-// jsCallbackReady is called by KDP as soon as KDP is ready to begin interacting with
-// javascript. We place it in head to ensure that it's always available before KDP calls
-// it (depending on page structure, KDP may call jsCallbackReady before DOM is ready)
-function jsCallbackReady(player_id) {
-alert(player_id + ' from function');
-	// create a (global) reference to the KDP so we don't have to repeat querying the dom.
-	// we use the "window." prefix as a convention to point out that this var is global
-	window.kdp = document.getElementById(player_id);
-	kdp.addJsListener("playerPlayEnd", "tellFlashPlayerNextVideoID");
-	var autoplay = kdp_embed.auto_play;
-	if ((CC.autoplay == 0) || (CC.autoplay == "false") || (CC.autoplay == false)) {
-		autoplay = false;
-		}
-	if(autoplay) {
-		kdp.setKDPAttribute("configProxy.flashvars", "autoPlay", "true");
-		}
-	if (CC.startSecs > 0) {
-		kdp.setKDPAttribute('mediaProxy', 'mediaPlayFrom', CC.startSecs);
-		}
-	if (CC.endSecs > 0) {
-		kdp.setKDPAttribute('mediaProxy', 'mediaPlayTo', CC.endSecs);
-		}
-	}
-
-	var KalturaChaptersSample = {
+var KalturaChaptersSample = {
 
 		myPlayer : null,
 		currentCue : null,
