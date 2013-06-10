@@ -94,15 +94,13 @@ var KalturaChaptersSample = {
 			{
 
 			}
-		}
+		},
 
 	updatePlayheadHandler : function(data, id) {
     // data = the player's progress time in seconds
     // id = the ID of the player that fired the notification;
     alert('updatePlayhead ' + data + ':' + id);
-    }
-}
-
+	}
 	}
 
 	// called by the KDP once it is ready to interact with javascript on the page:
