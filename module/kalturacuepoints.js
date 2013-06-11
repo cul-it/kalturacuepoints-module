@@ -71,7 +71,7 @@ var KalturaChaptersSample = {
 		var playerId2 = obj.getAttribute('id');
 		var player = document.getElementById(playerId2);
 		window.kdp = player;
-		alert('from dynamic callback jsCallbackReady - supplied id: ' + playerId + ', real id: ' + playerId2);
+		//alert('from dynamic callback jsCallbackReady - supplied id: ' + playerId + ', real id: ' + playerId2);
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
 		player.addJsListener("playerUpdatePlayhead", "KalturaChaptersSample.updatePlayheadHandler");
