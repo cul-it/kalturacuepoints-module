@@ -66,12 +66,12 @@ var KalturaChaptersSample = {
 
 	// called by the KDP once it is ready to interact with javascript on the page:
 	var jsCallbackReady = function( playerId ) {
-		window.kdp = document.getElementById(playerId);
 		var embed = document.getElementsByClassName("kaltura-embed")[0];
 		var obj = embed.getElementsByTagName("object")[0];
 		var playerId2 = obj.getAttribute('id');
 		var player = document.getElementById(playerId2);
-		//alert(playerId + ' from dynamic callback - real id: ' + playerId2);
+		window.kdp = player;
+		alert(playerId + ' from dynamic callback - real id: ' + playerId2);
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
 		player.addJsListener("playerUpdatePlayhead", "KalturaChaptersSample.updatePlayheadHandler");
