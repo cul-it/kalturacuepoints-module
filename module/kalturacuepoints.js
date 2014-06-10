@@ -73,7 +73,7 @@ var KalturaChaptersSample = {
 			var embed = document.getElementsByClassName("kaltura-embed")[0];
 			var obj = embed.getElementsByTagName("object")[0];
 			var playerId2 = obj.getAttribute('id');
-			var player = document.getElementById(playerId2);
+			player = document.getElementById(playerId2);
 		}
 		window.kdp = player;
 		alert('from dynamic callback jsCallbackReady - supplied id: ' + playerId + ', real id: ' + playerId2);
