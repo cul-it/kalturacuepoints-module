@@ -472,10 +472,10 @@ function kalturacuepoints_player_widget($entry, $title, $description,
     $playtime = '';
   }
   else if ($end_sec !== FALSE) {
-    $playtime = ", 'mediaProxy.mediaPlayFrom': $start_sec, 'mediaProxy.mediaPlayTo': $end_sec";
+    $playtime = ", \"mediaProxy.mediaPlayFrom\" : \"$start_sec\", \"mediaProxy.mediaPlayTo\" : \"$end_sec\"";
   }
   else {
-    $playtime = ", 'mediaProxy.mediaPlayFrom': $start_sec";
+    $playtime = ", \"mediaProxy.mediaPlayFrom\" : \"$start_sec\"";
   }
 
   // return the player
@@ -487,7 +487,8 @@ function kalturacuepoints_player_widget($entry, $title, $description,
     'uiconf_id' : '{$player}',
     'entry_id' : '{$entry}',
     'flashvars':{ // flashvars allows you to set runtime uiVar configuration overrides.
-      'autoPlay': true $playtime
+      'externalInterfaceDisabled' : true,
+      'autoPlay' : true $playtime
     },
     'params':{ // params allows you to set flash embed params such as wmode, allowFullScreen etc
       'wmode': 'transparent'
