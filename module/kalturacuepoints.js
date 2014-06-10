@@ -1,4 +1,4 @@
-﻿(function ($) {
+﻿
 // This function is called by the KDP once the KDP is ready to begin interacting with
 // javascript to see if javascript is also ready. If true is returned, KDP continues and
 // calls jsCallbackReady (see below), otherwise it continues to try every 100ms. The
@@ -84,4 +84,4 @@ var KalturaChaptersSample = {
 		// Cache a reference to kaltura player in a variable within my scope (my object)
 		KalturaChaptersSample.myPlayer = player;
 	};
-})(jQuery);
+
