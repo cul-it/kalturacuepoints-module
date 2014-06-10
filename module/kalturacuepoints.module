@@ -465,7 +465,7 @@ function kalturacuepoints_player_widget($entry, $title, $description,
   drupal_add_js($path);
 
   // return the widget target page element
-  $widget = "<div id=\"kalturacuepoints_widget\" class="kaltura-embed" style=\"width:{$player_width};height:{$player_height}\"></div>";
+  $widget = "<div id=\"kalturacuepoints_widget\" class=\"kaltura-embed\" style=\"width:{$player_width};height:{$player_height}\"></div>";
 
   // get start/stop time
   if ($start_sec == 0 && $end_sec === FALSE) {
