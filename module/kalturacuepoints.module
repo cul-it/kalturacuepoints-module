@@ -468,10 +468,15 @@ function kalturacuepoints_player_widget($entry, $title, $description,
   $widget = "<div id=\"kalturacuepoints_widget\" style=\"width:{$player_width};height:{$player_height}\"></div>";
 
   // get start/stop time
-  $playrange = "mediaProxy.mediaPlayFrom=$start_sec";
-  if ($end_sec !== false) {
-    $playrange .= "&mediaProxy.mediaPlayTo=$end_sec";
-    }
+  if ($start_sec == 0 && $end_sec === FALSE) {
+    $playtime = '';
+  }
+  else if ($end_sec !== FALSE) {
+    $playtime = ", 'mediaProxy.mediaPlayFrom':$start_sec, 'mediaProxy.mediaPlayTo':$end_sec";
+  }
+  else {
+    $playtime = ", 'mediaProxy.mediaPlayFrom':$start_sec";
+  }
 
   // return the player
   $player = <<<EOD
@@ -482,8 +487,7 @@ function kalturacuepoints_player_widget($entry, $title, $description,
     'uiconf_id' : '{$player}',
     'entry_id' : '{$entry}',
     'flashvars':{ // flashvars allows you to set runtime uiVar configuration overrides.
-      'autoPlay': true,
-      $playrange
+      'autoPlay': true $playtime
     },
     'params':{ // params allows you to set flash embed params such as wmode, allowFullScreen etc
       'wmode': 'transparent'
