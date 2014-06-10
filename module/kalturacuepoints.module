@@ -475,7 +475,7 @@ function kalturacuepoints_player_widget($entry, $title, $description,
     $playtime = ", \"mediaProxy.mediaPlayFrom\": \"$start_sec\", \"mediaProxy.mediaPlayTo\": \"$end_sec\"";
   }
   else {
-    $playtime = ", \"mediaProxy.mediaPlayFrom\": \"$start_sec\";
+    $playtime = ", \"mediaProxy.mediaPlayFrom\": \"$start_sec\"";
   }
 
   // return the player
@@ -496,5 +496,5 @@ function kalturacuepoints_player_widget($entry, $title, $description,
 </script>
 EOD;
 
-  return "$widget \n $player";
+  return "$widget $player";
 }
