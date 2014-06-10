@@ -72,7 +72,7 @@ var KalturaChaptersSample = {
 	}
 
 	// called by the KDP once it is ready to interact with javascript on the page:
-	var jsCallbackReady = function( playerId ) {
+	function jsCallbackReady ( playerId ) {
 		alert('jsCallbackReady ' + playerId);
 		var player = document.getElementById(playerId);
 		if (!player) {
