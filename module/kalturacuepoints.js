@@ -69,7 +69,7 @@ var KalturaChaptersSample = {
 	var jsCallbackReady = function( playerId ) {
 		alert('jsCallbackReady ' + playerId);
 		var player = document.getElementById(playerId);
-		if (player == null) {
+		if (!player) {
 			var embed = document.getElementsByClassName("kaltura-embed")[0];
 			var obj = embed.getElementsByTagName("object")[0];
 			var playerId2 = obj.getAttribute('id');
