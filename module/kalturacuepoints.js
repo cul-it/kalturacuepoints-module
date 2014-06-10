@@ -13,6 +13,11 @@ function jsInterfaceReady() {
 	return true;
 	}
 
+function kdpReady() {
+	alert('called kdpReady');
+}
+
+
 var KalturaChaptersSample = {
 
 		myPlayer : null,
