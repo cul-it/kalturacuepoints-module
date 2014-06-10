@@ -66,6 +66,7 @@ var KalturaChaptersSample = {
 
 	// called by the KDP once it is ready to interact with javascript on the page:
 	var jsCallbackReady = function( playerId ) {
+		alert('jsCallbackReady ' + playerId);
 		var embed = document.getElementsByClassName("kaltura-embed")[0];
 		var obj = embed.getElementsByTagName("object")[0];
 		var playerId2 = obj.getAttribute('id');
