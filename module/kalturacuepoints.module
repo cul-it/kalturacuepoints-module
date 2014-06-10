@@ -487,7 +487,6 @@ function kalturacuepoints_player_widget($entry, $title, $description,
     'uiconf_id' : '{$player}',
     'entry_id' : '{$entry}',
     'flashvars':{ // flashvars allows you to set runtime uiVar configuration overrides.
-      'streamerType' : 'hdnetwork',
       'autoPlay': true $playtime
     },
     'params':{ // params allows you to set flash embed params such as wmode, allowFullScreen etc
