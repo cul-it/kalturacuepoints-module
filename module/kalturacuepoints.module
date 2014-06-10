@@ -300,7 +300,7 @@ function kalturacuepoints_contents($which_block) {
 
 			$code = array(
 				'<div id="ctitle">' . $title . '</div>',
-				kalturacuepoints_player_embed_code($video_id, $title, $description, $time['start'], $time['end'],
+				kalturacuepoints_player_widget($video_id, $title, $description, $time['start'], $time['end'],
 					variable_get('kalturacuepoints_partnerid',''),
 					variable_get('kalturacuepoints_subpartnerid',''),
 					variable_get('kalturacuepoints_playerid',''),
@@ -454,3 +454,36 @@ EOD;
   return $str;
 }
 
+function kalturacuepoints_player_widget($entry, $title, $description,
+  $start_sec = 0, $end_sec = false,
+  $partner = 518251, $sub_partner = 51825100, $player = 9524271,
+  $player_width = 640, $player_height = 444 ) {
+
+  // insert library call in page header
+  $path = format_string('http://cdnapi.kaltura.com/p/@partner/sp/@partner00/embedIframeJs/uiconf_id/@uiConfId/partner_id/@partner',
+    array('@partner' => $partner, '@uiConfId' => $player));
+  drupal_add_js($path);
+
+  // return the widget target page element
+  $widget = "<div id=\"kalturacuepoints_widget\" style=\"width:{$player_width};height:{$player_height}\"></div>";
+
+  // return the player
+  $player = <<EOD
+<script>
+  kWidget.embed({
+    'targetId': 'kalturacuepoints_widget',
+    'wid': '_{$partner}',
+    'uiconf_id' : '{$player}',
+    'entry_id' : '{$entry}',
+    'flashvars':{ // flashvars allows you to set runtime uiVar configuration overrides.
+      'autoPlay': false
+    },
+    'params':{ // params allows you to set flash embed params such as wmode, allowFullScreen etc
+      'wmode': 'transparent'
+    }
+  });
+</script>
+EOD;
+
+  return "$widget /n $player";
+}
