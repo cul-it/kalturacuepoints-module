@@ -24,7 +24,7 @@ var KalturaChaptersSample = {
 		findSegmentStartEnd : function() {
 			// find the active segment
 			// <div class="field-content  film-segment"><a href="/conversations/mueller/film/109/segment/1776" class="active"><span data-segmenttimes="00:20:53 to 00:38:22">Politics, Art, and Mass Movements</span></a></div>
-			var active = jQuery("div.film-segment a.active span")[0];
+			var active = jQuery("div.field-content.film-segment a.active span")[0];
 			if (active != null) {
 				var timerange = active.getAttribute("data-segmenttimes");
 				var tparts = timerange.split(" ");
@@ -76,7 +76,7 @@ var KalturaChaptersSample = {
 			player = document.getElementById(playerId2);
 		}
 		window.kdp = player;
-		alert('from dynamic callback jsCallbackReady - supplied id: ' + playerId + ', real id: ' + playerId2);
+		//alert('from dynamic callback jsCallbackReady - supplied id: ' + playerId + ', real id: ' + playerId2);
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
 		player.addJsListener("playerUpdatePlayhead", "KalturaChaptersSample.updatePlayheadHandler");
