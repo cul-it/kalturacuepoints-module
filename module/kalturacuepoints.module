@@ -488,7 +488,10 @@ function kalturacuepoints_player_widget($entry, $title, $description,
     'entry_id' : '{$entry}',
     'flashvars':{ // flashvars allows you to set runtime uiVar configuration overrides.
       'externalInterfaceDisabled' : false,
-      'autoPlay' : true $playtime
+      'streamerType' : 'hdnetwork',
+      'akamaiHD.loadingPolicy' : 'preInitialize',
+      'akamaiHD.asyncInit' : true,
+      'autoPlay' : false $playtime
     },
     'params':{ // params allows you to set flash embed params such as wmode, allowFullScreen etc
       'wmode': 'transparent'
