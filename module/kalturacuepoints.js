@@ -39,6 +39,7 @@ var KalturaChaptersSample = {
 		playerPlaying: function() {
 			if( KalturaChaptersSample.firstLoad ) {
 				KalturaChaptersSample.firstLoad = false;
+				KalturaChaptersSample.myPlayer.sendNotification("doPause");
 			}
 		},
 
@@ -46,7 +47,6 @@ var KalturaChaptersSample = {
 			KalturaChaptersSample.firstLoad = true;
 			KalturaChaptersSample.findSegmentStartEnd();
 			KalturaChaptersSample.jumpToTime(KalturaChaptersSample.segmentStart);
-			KalturaChaptersSample.myPlayer.sendNotification("doPause");
 		},
 
 		jumpToTime : function ( timesec ) {
