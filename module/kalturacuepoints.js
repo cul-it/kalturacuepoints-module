@@ -54,7 +54,8 @@ var KalturaChaptersSample = {
 			if (KalturaChaptersSample.myPlayer != null) {
 				KalturaChaptersSample.myPlayer.sendNotification("doPlay");
 				KalturaChaptersSample.myPlayer.sendNotification("doSeek", timesec/1000);
-				KalturaChaptersSample.myPlayer.firstChild.getElementByClassName("playPauseBtn").click();	// simulate click to pause after seek
+				var but = KalturaChaptersSample.myPlayer.firstChild.getElementByClassName("playPauseBtn");
+				if (but) but.click();	// simulate click to pause after seek
 			}
 		},
 
