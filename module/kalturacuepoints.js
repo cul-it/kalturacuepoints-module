@@ -39,7 +39,7 @@ var KalturaChaptersSample = {
 		playerPlaying: function() {
 			if( KalturaChaptersSample.firstLoad ) {
 				KalturaChaptersSample.firstLoad = false;
-				KalturaChaptersSample.myPlayer.removeJsListener.("playerPlayed", "KalturaChaptersSample.playerPlaying");
+				KalturaChaptersSample.myPlayer.removeJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 			}
 		},
 
