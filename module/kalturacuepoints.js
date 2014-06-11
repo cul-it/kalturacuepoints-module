@@ -48,7 +48,7 @@ var KalturaChaptersSample = {
 			KalturaChaptersSample.findSegmentStartEnd();
 			KalturaChaptersSample.jumpToTime(KalturaChaptersSample.segmentStart);
 			KalturaChaptersSample.myPlayer.removeJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
-			//KalturaChaptersSample.clickOnPause();
+			KalturaChaptersSample.clickOnPause();
 		},
 
 		clickOnPause: function() {
