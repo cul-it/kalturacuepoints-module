@@ -40,6 +40,7 @@ var KalturaChaptersSample = {
 			if( KalturaChaptersSample.firstLoad ) {
 				KalturaChaptersSample.firstLoad = false;
 				KalturaChaptersSample.myPlayer.removeJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
+				KalturaChaptersSample.clickOnPause();
 			}
 		},
 
@@ -50,23 +51,26 @@ var KalturaChaptersSample = {
 			KalturaChaptersSample.myPlayer.removeJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
 		},
 
+		clickOnPause: function() {
+			var fram = document.getElementsByClassName("mwEmbedKalturaIframe");
+			if (fram.length > 0) {
+				var buts = fram[0].contentWindow.document.getElementsByClassName("playPauseBtn");
+				if (buts.length > 0) {
+					buts[0].click();	// simulate click to pause after seek
+				}
+				else {
+					alert('no buts');
+				}
+			}
+			else {
+				alert('no fram');
+			}
+		}
+
 		jumpToTime : function ( timesec ) {
 			if (KalturaChaptersSample.myPlayer != null) {
 				KalturaChaptersSample.myPlayer.sendNotification("doPlay");
 				KalturaChaptersSample.myPlayer.sendNotification("doSeek", timesec/1000);
-				var fram = document.getElementsByClassName("mwEmbedKalturaIframe");
-				if (fram.length > 0) {
-					var buts = fram[0].contentWindow.document.getElementsByClassName("playPauseBtn");
-					if (buts.length > 0) {
-						buts[0].click();	// simulate click to pause after seek
-					}
-					else {
-						alert('no buts');
-					}
-				}
-				else {
-					alert('no fram');
-				}
 			}
 		},
 
