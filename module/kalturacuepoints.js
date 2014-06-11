@@ -65,7 +65,7 @@ var KalturaChaptersSample = {
 			else {
 				alert('no fram');
 			}
-		}
+		},
 
 		jumpToTime : function ( timesec ) {
 			if (KalturaChaptersSample.myPlayer != null) {
