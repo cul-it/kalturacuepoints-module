@@ -54,12 +54,18 @@ var KalturaChaptersSample = {
 			if (KalturaChaptersSample.myPlayer != null) {
 				KalturaChaptersSample.myPlayer.sendNotification("doPlay");
 				KalturaChaptersSample.myPlayer.sendNotification("doSeek", timesec/1000);
-				var buts = KalturaChaptersSample.myPlayer.getElementsByClassName("playPauseBtn");
-				if (buts.length > 0) {
-					buts[0].click();	// simulate click to pause after seek
+				var fram = document.getElementsByClassName("mwEmbedKalturaIframe");
+				if (fram.length > 0) {
+					var buts = fram.contentWindow.document.getElementsByClassName("playPauseBtn");
+					if (buts.length > 0) {
+						buts[0].click();	// simulate click to pause after seek
+					}
+					else {
+						alert('no buts');
+					}
 				}
 				else {
-					alert('no buts')
+					alert('no fram');
 				}
 			}
 		},
