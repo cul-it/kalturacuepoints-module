@@ -51,7 +51,7 @@ var KalturaChaptersSample = {
 
 		jumpToTime : function ( timesec ) {
 			if (KalturaChaptersSample.myPlayer != null) {
-				KalturaChaptersSample.myPlayer.sendNotification("doPlay");
+				//KalturaChaptersSample.myPlayer.sendNotification("doPlay");
 				KalturaChaptersSample.myPlayer.sendNotification("doSeek", timesec/1000);
 			}
 		},
