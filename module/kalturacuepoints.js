@@ -98,7 +98,7 @@ var KalturaChaptersSample = {
 		window.kdp = player;
 		//alert('from dynamic callback jsCallbackReady - supplied id: ' + playerId + ', real id: ' + playerId2);
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
-		player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
+		player.addJsListener("mediaLoaded", "KalturaChaptersSample.doFirstPlay");
 		player.addJsListener("playerUpdatePlayhead", "KalturaChaptersSample.updatePlayheadHandler");
 		player.setKDPAttribute("configProxy.flashvars","autoPlay","false");
 
