@@ -53,7 +53,7 @@ var KalturaChaptersSample = {
 				KalturaChaptersSample.myPlayer.setKDPAttribute("configProxy.flashvars","autoPlay","false");
 				KalturaChaptersSample.myPlayer.sendNotification("doPlay");
 				KalturaChaptersSample.myPlayer.sendNotification("doSeek", timesec/1000);
-				KalturaChaptersSample.myPlayer.sendNotification("doPause");
+				KalturaChaptersSample.myPlayer.sendNotification("doPlay");
 			}
 		},
 
