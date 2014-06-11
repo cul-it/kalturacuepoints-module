@@ -56,7 +56,7 @@ var KalturaChaptersSample = {
 				KalturaChaptersSample.myPlayer.sendNotification("doSeek", timesec/1000);
 				var fram = document.getElementsByClassName("mwEmbedKalturaIframe");
 				if (fram.length > 0) {
-					var buts = fram.contentWindow.document.getElementsByClassName("playPauseBtn");
+					var buts = fram[0].contentWindow.document.getElementsByClassName("playPauseBtn");
 					if (buts.length > 0) {
 						buts[0].click();	// simulate click to pause after seek
 					}
