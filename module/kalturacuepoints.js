@@ -35,9 +35,9 @@ var KalturaChaptersSample = {
 				var timerange = active.getAttribute("data-segmenttimes");
 				var tparts = timerange.split(" ");
 				var hhmmss = tparts[0].split(":");
-				this.segmentStart = (parseInt(hhmmss[0]) * 3600 + parseInt(hhmmss[1]) * 60 + parseInt(hhmmss[2])) * 1000;
+				KalturaChaptersSample.segmentStart = (parseInt(hhmmss[0]) * 3600 + parseInt(hhmmss[1]) * 60 + parseInt(hhmmss[2])) * 1000;
 				hhmmss = tparts[2].split(":");
-				this.segmentEnd = (parseInt(hhmmss[0]) * 3600 + parseInt(hhmmss[1]) * 60 + parseInt(hhmmss[2])) * 1000;
+				KalturaChaptersSample.segmentEnd = (parseInt(hhmmss[0]) * 3600 + parseInt(hhmmss[1]) * 60 + parseInt(hhmmss[2])) * 1000;
 			}
 		},
 
@@ -49,15 +49,15 @@ var KalturaChaptersSample = {
 
 		doFirstPlay: function() {
 			KalturaChaptersSample.firstLoad = true;
-			this.findSegmentStartEnd();
-			this.jumpToTime(this.segmentStart);
-			this.myPlayer.sendNotification("doPause");
+			KalturaChaptersSample.findSegmentStartEnd();
+			KalturaChaptersSample.jumpToTime(KalturaChaptersSample.segmentStart);
+			KalturaChaptersSample.myPlayer.sendNotification("doPause");
 		},
 
 		jumpToTime : function ( timesec ) {
-			if (this.myPlayer != null) {
-				this.myPlayer.sendNotification("doPlay");
-				this.myPlayer.sendNotification("doSeek", timesec/1000);
+			if (KalturaChaptersSample.myPlayer != null) {
+				KalturaChaptersSample.myPlayer.sendNotification("doPlay");
+				KalturaChaptersSample.myPlayer.sendNotification("doSeek", timesec/1000);
 			}
 		},
 
@@ -65,7 +65,7 @@ var KalturaChaptersSample = {
     // data = the player's progress time in seconds
     // id = the ID of the player that fired the notification;
     //alert('updatePlayhead ' + data + ':' + id);
-    if ((this.segmentEnd != null) && ((parseInt(data) * 1000) > this.segmentEnd)) {
+    if ((KalturaChaptersSample.segmentEnd != null) && ((parseInt(data) * 1000) > KalturaChaptersSample.segmentEnd)) {
     	KalturaChaptersSample.myPlayer.sendNotification("doPause");
     }
 	}
