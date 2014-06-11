@@ -50,10 +50,9 @@ var KalturaChaptersSample = {
 
 		jumpToTime : function ( timesec ) {
 			if (KalturaChaptersSample.myPlayer != null) {
-				KalturaChaptersSample.myPlayer.setKDPAttribute("configProxy.flashvars","autoPlay","false");
 				KalturaChaptersSample.myPlayer.sendNotification("doPlay");
 				KalturaChaptersSample.myPlayer.sendNotification("doSeek", timesec/1000);
-				KalturaChaptersSample.myPlayer.sendNotification("doPlay");
+				//KalturaChaptersSample.myPlayer.sendNotification("doPlay");
 			}
 		},
 
@@ -82,6 +81,7 @@ var KalturaChaptersSample = {
 		player.addJsListener("playerPlayed", "KalturaChaptersSample.playerPlaying");
 		player.addJsListener("mediaReady", "KalturaChaptersSample.doFirstPlay");
 		player.addJsListener("playerUpdatePlayhead", "KalturaChaptersSample.updatePlayheadHandler");
+		player.setKDPAttribute("configProxy.flashvars","autoPlay","true");
 
 		// Cache a reference to kaltura player in a variable within my scope (my object)
 		KalturaChaptersSample.myPlayer = player;
