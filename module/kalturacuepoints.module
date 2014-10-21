@@ -327,7 +327,7 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
     }
   $str_old = <<<EOD
 <script type="text/javascript"
-  src="http://www.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner">
+  src="https://www.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner">
   </script>
 <object id="kaltura_player_1336413328"
   name="kaltura_player_1336413328"
