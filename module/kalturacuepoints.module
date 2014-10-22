@@ -327,7 +327,7 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
     }
 // new larger Captioning Chapter Player 640 x 444
 // player 9524271
-$str = <<<EOD
+$str_5 = <<<EOD
 <div id="kaltura_player_1369932496" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 <span itemprop="name" content="$title"></span>
 <span itemprop="description" content="$description"></span>
@@ -340,6 +340,35 @@ $str = <<<EOD
 <a href="http://corp.kaltura.com/Video-Solutions">Video Solutions</a>
 <a href="http://corp.kaltura.com/Products/Features/Video-Player">Video Player</a></div>
 <script src="http://cdnapi.kaltura.com/p/$partner/sp/$sub_partner/embedIframeJs/uiconf_id/$player/partner_id/$partner?autoembed=true&entry_id=$entry&playerId=kaltura_player_1369932496&cache_st=1369932496&width=$player_width&height=$player_height&flashvars[akamaiHD.loadingPolicy]=preInitialize&flashvars[akamaiHD.asyncInit]=true&flashvars[streamerType]=hdnetwork"></script>
+EOD;
+// newer Large Captioning Chapter Player Universal with support for https
+// player ID 9524271
+$str = <<<EOD
+<script src="https://cdnapisec.kaltura.com/p/518251/sp/51825100/embedIframeJs/uiconf_id/9524271/partner_id/518251"></script>
+<div id="kaltura_player_1413991956" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+<span itemprop="name" content="$title"></span>
+<span itemprop="description" content="$description"></span>
+<span itemprop="duration" content=""></span>
+<span itemprop="thumbnail" content=""></span>
+<span itemprop="width" content="{$player_width}"></span>
+<span itemprop="height" content="{$player_height}"></span>
+</div>
+<script>
+kWidget.embed({
+  "targetId": "kaltura_player_1413991956",
+  "wid": "_518251",
+  "uiconf_id": 9524271,
+  "flashvars": {
+    "akamaiHD": {
+      "loadingPolicy": "preInitialize",
+      "asyncInit": "true"
+    },
+    "streamerType": "hdnetwork"
+  },
+  "cache_st": 1413991956,
+  "entry_id": "$entry"
+});
+</script>
 EOD;
   return $str;
 }
