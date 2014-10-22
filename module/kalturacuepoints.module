@@ -300,7 +300,7 @@ function kalturacuepoints_contents($which_block) {
 
 			$code = array(
 				'<div id="ctitle">' . $title . '</div>',
-				kalturacuepoints_player_widget($video_id, $title, $description, $time['start'], $time['end'],
+				kalturacuepoints_player_embed_code($video_id, $title, $description, $time['start'], $time['end'],
 					variable_get('kalturacuepoints_partnerid',''),
 					variable_get('kalturacuepoints_subpartnerid',''),
 					variable_get('kalturacuepoints_playerid',''),
