@@ -356,8 +356,8 @@ $str = <<<EOD
 <script>
 kWidget.embed({
   "targetId": "kaltura_player_1413991956",
-  "wid": "_518251",
-  "uiconf_id": 9524271,
+  "wid": "_{$partner}",
+  "uiconf_id": '{$player}',
   "flashvars": {
     "akamaiHD": {
       "loadingPolicy": "preInitialize",
@@ -379,7 +379,7 @@ function kalturacuepoints_player_widget($entry, $title, $description,
   $player_width = 640, $player_height = 444 ) {
 
   // insert library call in page header
-  $path = format_string('http://cdnapi.kaltura.com/p/@partner/sp/@partner00/embedIframeJs/uiconf_id/@uiConfId/partner_id/@partner',
+  $path = format_string('https://cdnapisec.kaltura.com/p/@partner/sp/@partner00/embedIframeJs/uiconf_id/@uiConfId/partner_id/@partner',
     array('@partner' => $partner, '@uiConfId' => $player));
   drupal_add_js($path);
 
@@ -401,14 +401,20 @@ function kalturacuepoints_player_widget($entry, $title, $description,
   $player = <<<EOD
 <script>
   kWidget.embed({
-    'targetId': 'kalturacuepoints_widget',
+    'targetId': 'kaltura_player_1413991956',
     'wid': '_{$partner}',
     'uiconf_id' : '{$player}',
     'entry_id' : '{$entry}',
     'flashvars':{ // flashvars allows you to set runtime uiVar configuration overrides.
       "externalInterfaceDisabled" : false,
       'autoPlay' : false $playtime
-    },
+       "akamaiHD": {
+        "loadingPolicy": "preInitialize",
+        "asyncInit": "true"
+        },
+      "streamerType": "hdnetwork"
+     },
+    "cache_st": 1413991956,
     'params':{ // params allows you to set flash embed params such as wmode, allowFullScreen etc
       'wmode': 'transparent'
     }
