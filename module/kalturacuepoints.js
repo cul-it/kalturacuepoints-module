@@ -59,12 +59,6 @@ var KalturaChaptersSample = {
 				if (buts.length > 0) {
 					buts[0].click();	// simulate click to pause after seek
 				}
-				else {
-					alert('no buts');
-				}
-			}
-			else {
-				alert('no fram');
 			}
 			KalturaChaptersSample.myPlayer.removeJsListener(playerSeekEnd, "KalturaChaptersSample.clickOnPause");
 		},
