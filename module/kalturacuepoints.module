@@ -75,6 +75,7 @@ function kalturacuepoints_menu() {
 }
 
 function kalturacuepoints_admin_validate($form, &$form_state) {
+  dsm($forms_state['values']);
   $partner = $forms_state['values']['kalturacuepoints_partnerid'];
   if (!is_numeric($partner) || $partner <= 0) {
     form_set_error('kalturacuepoints_partnerid', t('Partner ID must be a positive number.'));
