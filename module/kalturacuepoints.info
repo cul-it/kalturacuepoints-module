@@ -5,4 +5,4 @@ core = 7.x
 
 files[] = kalturacuepoints.js
 
-configure = admin/config/media/kalturacuepoints
+configure = admin/config/kalturacuepoints
