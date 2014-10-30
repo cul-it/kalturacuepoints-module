@@ -634,9 +634,13 @@ function kalturacuepoints_field_formatter_settings_form($field, $instance, $view
 function kalturacuepoints_field_formatter_settings_summary($field, $instance, $view_mode) {
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
-  $summary = t('Use a @size Facebook button with the tooltip of "@tooltip"', array(
-    '@size'     => $settings['pic_size'],
-    '@tooltip'  => $settings['tooltip'],
+  $summary = t('Use a @player player sized at @wid x @hgt. Fields are entry:@entry,
+    palytime:@play, segments:@seg.', array(
+    '@player'     => $settings['kalturacuepoints_playerid'],
+    '@wid'     => $settings['kalturacuepoints_player_width'],
+    '@hgt'     => $settings['kalturacuepoints_player_height'],
+    '@play'     => $settings['kalturacuepoints_playtime_field'],
+    '@seg'     => $settings['kalturacuepoints_segment_video_reference_field'],
   )); // we use t() for translation and placeholders to guard against attacks
   return $summary;
 }
@@ -647,6 +651,19 @@ function kalturacuepoints_field_formatter_settings_summary($field, $instance, $v
 function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array(); // Initialize the var
   $settings = $display['settings']; // get the settings
+
+  $player = $settings['kalturacuepoints_playerid'];
+  $wid = $settings['kalturacuepoints_player_width'];
+  $hgt = $settings['kalturacuepoints_player_height'];
+  $play = $settings['kalturacuepoints_playtime_field'];
+  $seg = $settings['kalturacuepoints_segment_video_reference_field'];
+
+  $partner = variable_get('kalturacuepoints_partnerid',  '');
+  $subpartner = variable_get('kalturacuepoints_subpartnerid',  '');
+  $novid = variable_get('kalturacuepoints_no_video_message_field', t('No video!'));
+
+dsm($entity);
+
   $size = $settings['pic_size']; // The Size setting selected in the settings form
   $tooltip = $settings['tooltip']; // The tool tip assigned in settings
   // Create the image - Note that I'm storing the images in our module but they could be anywhere
