@@ -7,4 +7,6 @@ files[] = kalturacuepoints.js
 
 ; Views Handlers
 ; see https://gist.github.com/juampy72/5816530
+dependencies[] = ctools
+
 files[] = views/kalturacuepoints_handler_kaltura_embed.inc
