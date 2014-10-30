@@ -66,11 +66,12 @@ function kalturacuepoints_menu() {
   $items['admin/config/kalturacuepoints'] = array(
     'title' => 'Kalturacuepoints module settings',
     'description' => 'Set Kaltura partner information and missing video message.',
-    'page callback' => 'drupal_get_form',
+    'page callback' => 'system_admin_menu_block_page',
     'page arguments' => array('kalturacuepoints_admin'),
     'access arguments' => array('administer kalturacuepoints settings'),
     'type' => MENU_NORMAL_ITEM,
     );
+  return $items;
 }
 
 function kalturacuepoints_admin_validate($form, &$form_state) {
