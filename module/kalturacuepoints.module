@@ -55,38 +55,6 @@ function kalturacuepoints_admin() {
     '#description' => t('When the block can not find a video to display show this.'),
     '#default_value' => variable_get('kalturacuepoints_no_video_message_field', t('Configure kalturacuepoints block field names or hide this block!')),
   );
-  return system_settings_form($form);
-}
-
-/**
- * Implements hook_menu()
- */
-function kalturacuepoints_menu() {
-  $items = array();
-  $items['admin/config/kalturacuepoints'] = array(
-    'title' => 'Kalturacuepoints module settings',
-    'description' => 'Set Kaltura partner information and missing video message.',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('kalturacuepoints_admin'),
-    'access arguments' => array('administer kalturacuepoints settings'),
-    'type' => MENU_NORMAL_ITEM,
-    );
-  return $items;
-}
-
-function kalturacuepoints_admin_validate($form, &$form_state) {
-  $partner = $form_state['values']['kalturacuepoints_partnerid'];
-  if (!is_numeric($partner) || $partner <= 0) {
-    form_set_error('kalturacuepoints_partnerid', t('Partner ID must be a positive number.'));
-  }
-  $partner = $form_state['values']['kalturacuepoints_subpartnerid'];
-  if (!is_numeric($partner) || $partner <= 0) {
-    form_set_error('kalturacuepoints_partnerid', t('Sub-Partner ID must be a positive number.'));
-  }
-}
-
-/*
-missing fields:
   $form['kalturacuepoints_playerid'] = array(
     '#type' => 'textfield',
     '#title' => t('Kaltura Player ID'),
@@ -129,7 +97,36 @@ missing fields:
     '#description' => t('Internal name for a Node Reference field that points to a video node from a segment node.'),
     '#default_value' => variable_get('kalturacuepoints_video_reference_field',  'field_seg_video'),
   );
-*/
+  return system_settings_form($form);
+}
+
+/**
+ * Implements hook_menu()
+ */
+function kalturacuepoints_menu() {
+  $items = array();
+  $items['admin/config/kalturacuepoints'] = array(
+    'title' => 'Kalturacuepoints module settings',
+    'description' => 'Set Kaltura partner information and missing video message.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('kalturacuepoints_admin'),
+    'access arguments' => array('administer kalturacuepoints settings'),
+    'type' => MENU_NORMAL_ITEM,
+    );
+  return $items;
+}
+
+function kalturacuepoints_admin_validate($form, &$form_state) {
+  $partner = $form_state['values']['kalturacuepoints_partnerid'];
+  if (!is_numeric($partner) || $partner <= 0) {
+    form_set_error('kalturacuepoints_partnerid', t('Partner ID must be a positive number.'));
+  }
+  $partner = $form_state['values']['kalturacuepoints_subpartnerid'];
+  if (!is_numeric($partner) || $partner <= 0) {
+    form_set_error('kalturacuepoints_partnerid', t('Sub-Partner ID must be a positive number.'));
+  }
+}
+
 
 /**
  * implementation of hook_field_display_node_alter()
@@ -565,12 +562,17 @@ function kalturacuepoints_field_formatter_info() {
       'description' => t('Renders an Entry ID as a Video'),
       'field types' => array('text'),
       'settings'  => array( //Array of the settings we'll create
-        'pic_size' => 'small', //give a default value for when the form is first loaded
-        'tooltip' => 'Link to user Facebook page', //ditto
-      ),
+        'kalturacuepoints_playerid' => variable_get('kalturacuepoints_playerid',  ''),
+        'kalturacuepoints_player_width' => variable_get('kalturacuepoints_player_width',  ''),
+        'kalturacuepoints_player_height' => variable_get('kalturacuepoints_player_height',  ''),
+        'kalturacuepoints_entry_id_field' => variable_get('kalturacuepoints_entry_id_field',  ''),
+        'kalturacuepoints_playtime_field' => variable_get('kalturacuepoints_playtime_field',  ''),
+        'kalturacuepoints_segment_video_reference_field' => variable_get('kalturacuepoints_segment_video_reference_field',  ''),
+      );
     ),
    );
 }
+
 
 /**
  * Implements hook_field_formatter_settings_form().
@@ -581,26 +583,49 @@ function kalturacuepoints_field_formatter_settings_form($field, $instance, $view
   //This gets the actual settings
   $settings = $display['settings'];
   //Initialize the element variable
-  $element = array();
-  //Add your select box
-  $element['pic_size'] = array(
-    '#type'           => 'select',                           // Use a select box widget
-    '#title'          => t('Button Size'),                   // Widget label
-    '#description'    => t('Select what size of FB button'), // Helper text
-    '#default_value'  => $settings['pic_size'],              // Get the value if it's already been set
-    '#options'        => array(
-      'small'  => 'Small',
-      'medium' => 'Medium',
-      'large'  => 'Large',
-    ),
+  $form['kalturacuepoints_playerid'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Kaltura Player ID'),
+    '#size' => 60,
+    '#description' => t('Kaltura ID for the video player eg. 1112223.'),
+    '#default_value' => $settings['kalturacuepoints_playerid'],
   );
-  $element['tooltip'] = array(
-    '#type'           => 'textfield',                        // Use a textbox
-    '#title'          => t('Tool Tip'),                      // Widget label
-    '#description'    => t('This text will appear when a user mouses over.'),  // helper text
-    '#default_value'  => $settings['tooltip'],               // Get the value if it's already been set
+  $form['kalturacuepoints_player_width'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Player Width in pixels'),
+    '#size' => 60,
+    '#description' => t('For the width and media:width of the embed code.'),
+    '#default_value' => $settings['kalturacuepoints_player_width'],
   );
-  return $element;
+  $form['kalturacuepoints_player_height'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Player Height in pixels'),
+    '#size' => 60,
+    '#description' => t('For the height and media:height of the embed code.'),
+    '#default_value' => $settings['kalturacuepoints_player_height'],
+  );
+  $form['kalturacuepoints_entry_id_field'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Field name for Kalture Entry ID'),
+    '#size' => 60,
+    '#description' => t('Internal name for the field containing the Kaltura ID for a video.'),
+    '#default_value' => $settings['kalturacuepoints_entry_id_field'],
+  );
+  $form['kalturacuepoints_playtime_field'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Field name for segment start/stop times'),
+    '#size' => 60,
+    '#description' => t('Internal name for a Date field where the begin and end times are used to start and stop the video playback.'),
+    '#default_value' => $settings['kalturacuepoints_playtime_field'],
+  );
+  $form['kalturacuepoints_segment_video_reference_field'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Field name for segment video reference'),
+    '#size' => 60,
+    '#description' => t('Internal name for a Node Reference field that points to a video node from a segment node.'),
+    '#default_value' => $settings['kalturacuepoints_video_reference_field'],
+  );
+  return $form;
 }
 
 /**
