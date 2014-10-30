@@ -17,6 +17,19 @@ function kalturacuepoints_init() {
 }
 
 /**
+ * Implements hook_permission
+ * @return [type] [description]
+ */
+function kalturacuepoints_permission() {
+  return array(
+    'administer kalturacuepoints settings' => array(
+      'title' => t('Administer Kalturacuepoints'),
+      'description' => t('Perform administration tasks for Kalturacuepoints.'),
+      ),
+    );
+}
+
+/**
  * form for administration items for this module
  */
 function kalturacuepoints_admin() {
