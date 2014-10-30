@@ -440,7 +440,6 @@ EOD;
   return "$widget $player";
 }
 
-
 /**
  * Implements hook_field_formatter_info().
  */
