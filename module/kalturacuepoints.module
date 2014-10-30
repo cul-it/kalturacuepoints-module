@@ -639,6 +639,7 @@ function kalturacuepoints_field_formatter_settings_summary($field, $instance, $v
     '@player'     => $settings['kalturacuepoints_playerid'],
     '@wid'     => $settings['kalturacuepoints_player_width'],
     '@hgt'     => $settings['kalturacuepoints_player_height'],
+    '@entry'  => $settings['kalturacuepoints_entry_id_field'],
     '@play'     => $settings['kalturacuepoints_playtime_field'],
     '@seg'     => $settings['kalturacuepoints_segment_video_reference_field'],
   )); // we use t() for translation and placeholders to guard against attacks
@@ -655,6 +656,7 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   $player = $settings['kalturacuepoints_playerid'];
   $wid = $settings['kalturacuepoints_player_width'];
   $hgt = $settings['kalturacuepoints_player_height'];
+  $entry = $settings['kalturacuepoints_entry_id_field'];
   $play = $settings['kalturacuepoints_playtime_field'];
   $seg = $settings['kalturacuepoints_segment_video_reference_field'];
 
@@ -662,7 +664,7 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   $subpartner = variable_get('kalturacuepoints_subpartnerid',  '');
   $novid = variable_get('kalturacuepoints_no_video_message_field', t('No video!'));
 
-dsm($entity);
+dsm($entity->nid);
 
   $size = $settings['pic_size']; // The Size setting selected in the settings form
   $tooltip = $settings['tooltip']; // The tool tip assigned in settings
