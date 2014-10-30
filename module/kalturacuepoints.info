@@ -6,4 +6,5 @@ core = 7.x
 files[] = kalturacuepoints.js
 
 ; Views Handlers
-files[] = views/kalturacuepoints_handler_kalturaentryid.inc
+; see https://gist.github.com/juampy72/5816530
+files[] = views/kalturacuepoints_handler_kaltura_embed.inc
