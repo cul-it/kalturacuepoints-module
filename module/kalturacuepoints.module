@@ -664,6 +664,8 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   $subpartner = variable_get('kalturacuepoints_subpartnerid',  '');
   $novid = variable_get('kalturacuepoints_no_video_message_field', t('No video!'));
 
+  $nid = $entity->nid;
+
 dsm($entity->nid);
 
   $size = $settings['pic_size']; // The Size setting selected in the settings form
