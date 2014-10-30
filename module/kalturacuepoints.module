@@ -568,7 +568,7 @@ function kalturacuepoints_field_formatter_info() {
         'kalturacuepoints_entry_id_field' => variable_get('kalturacuepoints_entry_id_field',  ''),
         'kalturacuepoints_playtime_field' => variable_get('kalturacuepoints_playtime_field',  ''),
         'kalturacuepoints_segment_video_reference_field' => variable_get('kalturacuepoints_segment_video_reference_field',  ''),
-      );
+      ),
     ),
    );
 }
