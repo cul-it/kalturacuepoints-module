@@ -4,3 +4,6 @@ package = "Cornell University Library"
 core = 7.x
 
 files[] = kalturacuepoints.js
+
+; Views Handlers
+files[] = views/kalturacuepoints_handler_kalturaentryid.inc
