@@ -343,7 +343,7 @@ $str_5 = <<<EOD
 EOD;
 // newer Large Captioning Chapter Player Universal with support for https
 // player ID 9524271
-$str = <<<EOD
+$str_6 = <<<EOD
 <script src="https://cdnapisec.kaltura.com/p/518251/sp/51825100/embedIframeJs/uiconf_id/9524271/partner_id/518251"></script>
 <div id="kaltura_player_1413991956" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 <span itemprop="name" content="$title"></span>
@@ -370,6 +370,21 @@ kWidget.embed({
 });
 </script>
 EOD;
+
+// newer Large Captioning Chapter Player Universal with support for https
+// player ID 9524271
+$str = <<<EOD
+<div id="kaltura_player_1414675795" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+<span itemprop="name" content="$title"></span>
+<span itemprop="description" content="$description"></span>
+<span itemprop="duration" content=""></span>
+<span itemprop="thumbnail" content=""></span>
+<span itemprop="width" content="{$player_width}"></span>
+<span itemprop="height" content="{$player_height}"></span>
+</div>
+<script src="https://cdnapisec.kaltura.com/p/{$partner}/sp/{$partner}00/embedIframeJs/uiconf_id/{$player}/partner_id/{$partner}?autoembed=true&entry_id={$entry}&playerId=kaltura_player_1414675795&cache_st=1414675795&width={$player_width}&height={$player_height}&flashvars[streamerType]=auto"></script>
+EOD;
+
   return $str;
 }
 
