@@ -682,6 +682,12 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   $wid = $settings['kalturacuepoints_player_width'];
   $hgt = $settings['kalturacuepoints_player_height'];
 
+  $language = kalturacuepoints_language();
+  $title = isset($entity->title_field["$language"][0]['safe_value']) ?
+    $entity->title_field["$language"][0]['safe_value'] : '';
+  $description = isset($entity->body["$language"][0]['safe_value']) ?
+    $entity->body["$language"][0]['safe_value'] : '';
+
   if ($display['type'] == 'kalturacuepoints_embed') {
     $entryidarray = array_pop(array_pop($entity->{$field_name}));
     $entryid = $entryidarray['safe_value'];
@@ -696,7 +702,8 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
 
   $nid = $entity->nid;
 
-  $test = array($field_name, $player, $wid, $hgt, $entryid, $partner,  $subpartner, $novid);
+  $test = array($field_name, $player, $wid, $hgt, $entryid, $partner,  $subpartner,
+    $novid, $title, $description);
   dsm($test);
 
   $size = $settings['pic_size']; // The Size setting selected in the settings form
