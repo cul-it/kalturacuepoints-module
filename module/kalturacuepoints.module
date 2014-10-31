@@ -494,7 +494,7 @@ $str = <<<EOD
 <span itemprop="width" content="{$player_width}"></span>
 <span itemprop="height" content="{$player_height}"></span>
 </div>
-<script src="https://cdnapisec.kaltura.com/p/{$partner}/sp/{$partner}00/embedIframeJs/uiconf_id/{$player}/partner_id/{$partner}?autoembed=true&entry_id={$entry}&playerId=kaltura_player_1414675795&cache_st=1414675795&width={$player_width}&height={$player_height}&flashvars[streamerType]=auto"></script>
+<script src="https://cdnapisec.kaltura.com/p/{$partner}/sp/{$partner}00/embedIframeJs/uiconf_id/{$player}/partner_id/{$partner}?autoembed=true&entry_id={$entry}&playerId=kaltura_player_1414675795&cache_st=1414675795&width={$player_width}&height={$player_height}&flashvars[streamerType]=auto&{$playrange}"></script>
 EOD;
 
   return $str;
