@@ -599,7 +599,6 @@ function kalturacuepoints_field_formatter_settings_form($field, $instance, $view
   $settings = $display['settings'];
   //Initialize the element variable
   $element = array();
-  dsm($display);
   if ($display['type'] == 'kalturacuepoints_embed' || $display['type'] == 'kalturacuepoints_embed_segment') {
     $element['kalturacuepoints_playerid'] = array(
       '#type' => 'textfield',
