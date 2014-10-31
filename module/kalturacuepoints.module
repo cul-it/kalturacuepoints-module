@@ -676,21 +676,27 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   dsm($field);
   dsm($instance);
 
-  if ($display['type'] == 'kalturacuepoints_embed') {
-   // $entryid = array_pop(array_pop($entity->))
-  }
+  $field_name = $field['field_name'];
+
   $player = $settings['kalturacuepoints_playerid'];
   $wid = $settings['kalturacuepoints_player_width'];
   $hgt = $settings['kalturacuepoints_player_height'];
-  $entry = $settings['kalturacuepoints_entry_id_field'];
-  $play = $settings['kalturacuepoints_playtime_field'];
-  $seg = $settings['kalturacuepoints_segment_video_reference_field'];
+
+  if ($display['type'] == 'kalturacuepoints_embed') {
+    $entryid = array_pop(array_pop($entity->{$field_name}));
+  }
+  // $entry = $settings['kalturacuepoints_entry_id_field'];
+  // $play = $settings['kalturacuepoints_playtime_field'];
+  // $seg = $settings['kalturacuepoints_segment_video_reference_field'];
 
   $partner = variable_get('kalturacuepoints_partnerid',  '');
   $subpartner = variable_get('kalturacuepoints_subpartnerid',  '');
   $novid = variable_get('kalturacuepoints_no_video_message_field', t('No video!'));
 
   $nid = $entity->nid;
+
+  $test = array($field_name, $player, $wid, $hgt, $entryid, $partner,  $subpartner, $novid);
+  dsm($test);
 
   $size = $settings['pic_size']; // The Size setting selected in the settings form
   $tooltip = $settings['tooltip']; // The tool tip assigned in settings
