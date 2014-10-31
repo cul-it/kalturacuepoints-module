@@ -644,6 +644,7 @@ function kalturacuepoints_field_formatter_settings_form($field, $instance, $view
  */
 function kalturacuepoints_field_formatter_settings_summary($field, $instance, $view_mode) {
   $display = $instance['display'][$view_mode];
+  dsm($display);
   $settings = $display['settings'];
   $summary = '';
   if ($display['type'] == 'kalturacuepoints_embed') {
