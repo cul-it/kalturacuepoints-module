@@ -707,7 +707,8 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
     if ($access === TRUE) {
       $node = node_load($video_nid);
       $entryfield = $settings['kalturacuepoints_entry_id_field'];
-      $entryid = field_view_value('node', $node, $entryfield, 0);
+      $entryidarray = array_pop(array_pop($node->{$entryfield}));
+      $entryid = $entryidarray['safe_value'];
       $playtimefield = $settings['kalturacuepoints_playtime_field'];
       $playtime = kalturacuepoints_playtime($entity->{$playtimefield});
       $embed = kalturacuepoints_player_embed_code($entryid, $title, $description, $playtime['start'], $playtime['end'],
