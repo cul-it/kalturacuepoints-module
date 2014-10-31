@@ -634,7 +634,7 @@ function kalturacuepoints_field_formatter_settings_form($field, $instance, $view
 function kalturacuepoints_field_formatter_settings_summary($field, $instance, $view_mode) {
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
-  $summary = t('Use a @player player sized at @wid x @hgt. Fields are entry:@entry,
+  $summary = t('Use a @player player sized at width @wid x height @hgt. Fields are entry:@entry,
     palytime:@play, segments:@seg.', array(
     '@player'     => $settings['kalturacuepoints_playerid'],
     '@wid'     => $settings['kalturacuepoints_player_width'],
