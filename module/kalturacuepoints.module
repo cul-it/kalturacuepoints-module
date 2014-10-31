@@ -644,7 +644,6 @@ function kalturacuepoints_field_formatter_settings_form($field, $instance, $view
  */
 function kalturacuepoints_field_formatter_settings_summary($field, $instance, $view_mode) {
   $display = $instance['display'][$view_mode];
-  dsm($display);
   $settings = $display['settings'];
   $summary = '';
   if ($display['type'] == 'kalturacuepoints_embed') {
@@ -654,7 +653,7 @@ function kalturacuepoints_field_formatter_settings_summary($field, $instance, $v
       '@hgt'     => $settings['kalturacuepoints_player_height'],
      )); // we use t() for translation and placeholders to guard against attacks
   }
-  elseif ($display['type'] == 'kalturacuepoints_embed') {
+  elseif ($display['type'] == 'kalturacuepoints_embed_segment') {
    $summary = t('Use a @player player sized at width @wid x height @hgt. The start and stop times are in the date field @play. This node reference field points to a video with the Kaltura Entry ID in the field @entry.', array(
       '@player'     => $settings['kalturacuepoints_playerid'],
       '@wid'     => $settings['kalturacuepoints_player_width'],
