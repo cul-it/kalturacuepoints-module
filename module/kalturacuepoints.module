@@ -683,7 +683,8 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   $hgt = $settings['kalturacuepoints_player_height'];
 
   if ($display['type'] == 'kalturacuepoints_embed') {
-    $entryid = array_pop(array_pop($entity->{$field_name}));
+    $entryidarray = array_pop(array_pop($entity->{$field_name}));
+    $entryid = $entryidarray['safe_value'];
   }
   // $entry = $settings['kalturacuepoints_entry_id_field'];
   // $play = $settings['kalturacuepoints_playtime_field'];
