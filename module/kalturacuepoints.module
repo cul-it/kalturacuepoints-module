@@ -688,17 +688,21 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   $description = isset($entity->body["$language"][0]['safe_value']) ?
     $entity->body["$language"][0]['safe_value'] : '';
 
+  $partner = variable_get('kalturacuepoints_partnerid',  '');
+  $subpartner = variable_get('kalturacuepoints_subpartnerid',  '');
+  $novid = variable_get('kalturacuepoints_no_video_message_field', t('No video!'));
+
+  $element = array();
   if ($display['type'] == 'kalturacuepoints_embed') {
     $entryidarray = array_pop(array_pop($entity->{$field_name}));
     $entryid = $entryidarray['safe_value'];
+    $embed = kalturacuepoints_player_embed_code($video_id, $title, $description, 0, FALSE,
+          $partner, $subpartner, $player, $wid, $hgt);
+    $element[0]['#markup'] = $embed;
   }
   // $entry = $settings['kalturacuepoints_entry_id_field'];
   // $play = $settings['kalturacuepoints_playtime_field'];
   // $seg = $settings['kalturacuepoints_segment_video_reference_field'];
-
-  $partner = variable_get('kalturacuepoints_partnerid',  '');
-  $subpartner = variable_get('kalturacuepoints_subpartnerid',  '');
-  $novid = variable_get('kalturacuepoints_no_video_message_field', t('No video!'));
 
   $nid = $entity->nid;
 
@@ -706,7 +710,7 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
     $novid, $title, $description);
   dsm($test);
 
-  $size = $settings['pic_size']; // The Size setting selected in the settings form
+/*  $size = $settings['pic_size']; // The Size setting selected in the settings form
   $tooltip = $settings['tooltip']; // The tool tip assigned in settings
   // Create the image - Note that I'm storing the images in our module but they could be anywhere
   $image = '<img src="/' . drupal_get_path('module', 'kalturacuepoints') . 'fb-' . $size . '.png">';
@@ -723,5 +727,6 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
     $link = l($image, $fb, $options); // Create the Link
     $element[0]['#markup'] = $link; // Assign it to the #markup of the element
   }
+*/
   return $element;
 }
