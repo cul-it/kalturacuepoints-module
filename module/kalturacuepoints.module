@@ -696,7 +696,7 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   if ($display['type'] == 'kalturacuepoints_embed') {
     $entryidarray = array_pop(array_pop($entity->{$field_name}));
     $entryid = $entryidarray['safe_value'];
-    $embed = kalturacuepoints_player_embed_code($video_id, $title, $description, 0, FALSE,
+    $embed = kalturacuepoints_player_embed_code($entryid, $title, $description, 0, FALSE,
           $partner, $subpartner, $player, $wid, $hgt);
     $element[0]['#markup'] = $embed;
   }
