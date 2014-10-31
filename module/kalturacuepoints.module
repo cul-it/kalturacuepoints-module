@@ -673,7 +673,12 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   $settings = $display['settings']; // get the settings
   dsm($display);
   dsm($entity);
+  dsm($field);
+  dsm($instance);
 
+  if ($display['type'] == 'kalturacuepoints_embed') {
+   // $entryid = array_pop(array_pop($entity->))
+  }
   $player = $settings['kalturacuepoints_playerid'];
   $wid = $settings['kalturacuepoints_player_width'];
   $hgt = $settings['kalturacuepoints_player_height'];
