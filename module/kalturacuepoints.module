@@ -671,6 +671,8 @@ function kalturacuepoints_field_formatter_settings_summary($field, $instance, $v
 function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array(); // Initialize the var
   $settings = $display['settings']; // get the settings
+  dsm($display);
+  dsm($entity);
 
   $player = $settings['kalturacuepoints_playerid'];
   $wid = $settings['kalturacuepoints_player_width'];
