@@ -559,15 +559,24 @@ function kalturacuepoints_field_formatter_info() {
   return array(
     'kalturacuepoints_embed' => array(
       'label' => t('Kaltura Video Embed'),
-      'description' => t('Renders an Entry ID as a Video'),
+      'description' => t('Renders the Entry ID in this field as a Video'),
       'field types' => array('text'),
+      'settings'  => array( //Array of the settings we'll create
+        'kalturacuepoints_playerid' => variable_get('kalturacuepoints_playerid',  ''),
+        'kalturacuepoints_player_width' => variable_get('kalturacuepoints_player_width',  ''),
+        'kalturacuepoints_player_height' => variable_get('kalturacuepoints_player_height',  ''),
+        ),
+      ),
+    'kalturacuepoints_embed_segment' => array(
+      'label' => t('Kaltura Video Segment Embed'),
+      'description' => t('Renders a Segment and its referenced video as a Video'),
+      'field types' => array('node_reference'),
       'settings'  => array( //Array of the settings we'll create
         'kalturacuepoints_playerid' => variable_get('kalturacuepoints_playerid',  ''),
         'kalturacuepoints_player_width' => variable_get('kalturacuepoints_player_width',  ''),
         'kalturacuepoints_player_height' => variable_get('kalturacuepoints_player_height',  ''),
         'kalturacuepoints_entry_id_field' => variable_get('kalturacuepoints_entry_id_field',  ''),
         'kalturacuepoints_playtime_field' => variable_get('kalturacuepoints_playtime_field',  ''),
-        'kalturacuepoints_segment_video_reference_field' => variable_get('kalturacuepoints_segment_video_reference_field',  ''),
       ),
     ),
    );
@@ -583,6 +592,8 @@ function kalturacuepoints_field_formatter_settings_form($field, $instance, $view
   //This gets the actual settings
   $settings = $display['settings'];
   //Initialize the element variable
+  $element = array();
+  dsm($display);
   $form['kalturacuepoints_playerid'] = array(
     '#type' => 'textfield',
     '#title' => t('Kaltura Player ID'),
