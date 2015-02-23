@@ -695,18 +695,19 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   if ($display['type'] == 'kalturacuepoints_embed') {
     $wrapper = entity_metadata_wrapper($entity_type, $entity);
     $entryid = $wrapper->{$field_name}->value();
-    //drupal_set_message(print_r($entity->{$field_name},TRUE)); //jgr25 debug
-    //$entryidarray = array_pop($v1strict = array_pop($v2strict = $entity->{$field_name}));
-    //$entryid = $entryidarray['safe_value'];
     $embed = kalturacuepoints_player_embed_code($entryid, $title, $description, 0, FALSE,
           $partner, $subpartner, $player, $wid, $hgt);
     $element[0]['#markup'] = $embed;
   }
   elseif ($display['type'] == 'kalturacuepoints_embed_segment') {
+/*
+    TODO: test this kalturacuepoints_embed_segment - not in any site yet. -jgr25
+
     $wrapper = entity_metadata_wrapper($entity_type, $entity);
     $props = entity_get_property_info($entity_type);
     drupal_set_message(t(print_r($props, TRUE)), 'status', FALSE);
     $entryid = $wrapper->{$field_name}->value();
+*/
     $entryidarray = array_pop($v1strict = array_pop($v2strict = $entity->{$field_name}));
     $video_nid = $entryidarray['nid'];
     $access = $entryidarray['access'];
