@@ -693,9 +693,11 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
 
   $element = array();
   if ($display['type'] == 'kalturacuepoints_embed') {
-    drupal_set_message(print_r($entity->{$field_name},TRUE)); //jgr25 debug
-    $entryidarray = array_pop($v1strict = array_pop($v2strict = $entity->{$field_name}));
-    $entryid = $entryidarray['safe_value'];
+    $wrapper = entity_metadata_wrapper($entity_type, $entity);
+    $entryid = $wrapper->{$field_name}->safe_value();
+    //drupal_set_message(print_r($entity->{$field_name},TRUE)); //jgr25 debug
+    //$entryidarray = array_pop($v1strict = array_pop($v2strict = $entity->{$field_name}));
+    //$entryid = $entryidarray['safe_value'];
     $embed = kalturacuepoints_player_embed_code($entryid, $title, $description, 0, FALSE,
           $partner, $subpartner, $player, $wid, $hgt);
     $element[0]['#markup'] = $embed;
