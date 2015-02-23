@@ -693,20 +693,20 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
 
   $element = array();
   if ($display['type'] == 'kalturacuepoints_embed') {
-    $entryidarray = array_pop($v1strict = array_pop($entity->{$field_name}));
+    $entryidarray = array_pop($v1strict = array_pop($v2strict = $entity->{$field_name}));
     $entryid = $entryidarray['safe_value'];
     $embed = kalturacuepoints_player_embed_code($entryid, $title, $description, 0, FALSE,
           $partner, $subpartner, $player, $wid, $hgt);
     $element[0]['#markup'] = $embed;
   }
   elseif ($display['type'] == 'kalturacuepoints_embed_segment') {
-    $entryidarray = array_pop($v1strict = array_pop($entity->{$field_name}));
+    $entryidarray = array_pop($v1strict = array_pop($v2strict = $entity->{$field_name}));
     $video_nid = $entryidarray['nid'];
     $access = $entryidarray['access'];
     if ($access === TRUE) {
       $node = node_load($video_nid);
       $entryfield = $settings['kalturacuepoints_entry_id_field'];
-      $entryidarray = array_pop($v1strict = array_pop($node->{$entryfield}));
+      $entryidarray = array_pop($v1strict = array_pop($v2strict = $node->{$entryfield}));
       $entryid = $entryidarray['safe_value'];
       $playtimefield = $settings['kalturacuepoints_playtime_field'];
       $playtime = kalturacuepoints_playtime($entity->{$playtimefield});
