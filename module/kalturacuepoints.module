@@ -694,7 +694,7 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
   $element = array();
   if ($display['type'] == 'kalturacuepoints_embed') {
     $wrapper = entity_metadata_wrapper($entity_type, $entity);
-    $entryid = $wrapper->{$field_name}->safe_value();
+    $entryid = $wrapper->{$field_name}->value();
     //drupal_set_message(print_r($entity->{$field_name},TRUE)); //jgr25 debug
     //$entryidarray = array_pop($v1strict = array_pop($v2strict = $entity->{$field_name}));
     //$entryid = $entryidarray['safe_value'];
