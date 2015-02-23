@@ -693,6 +693,7 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
 
   $element = array();
   if ($display['type'] == 'kalturacuepoints_embed') {
+    dsm($entity->{$field_name}); //jgr25 debug
     $entryidarray = array_pop($v1strict = array_pop($v2strict = $entity->{$field_name}));
     $entryid = $entryidarray['safe_value'];
     $embed = kalturacuepoints_player_embed_code($entryid, $title, $description, 0, FALSE,
