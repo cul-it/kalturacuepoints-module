@@ -31,10 +31,10 @@ var KalturaChaptersSample = {
 				var tparts = timerange.split(" ");
 				var mmssms = tparts[0].split(":");
 				KalturaChaptersSample.segmentStartSec =
-					parseInt(mmssms[0]) * 60 + parseInt(mmssms[1]) + Math.round(parseInt(mmssms[2]) / 60);
+					parseInt(mmssms[0]) * 60 + parseInt(mmssms[1]);
 				mmssms = tparts[2].split(":");
 				KalturaChaptersSample.segmentEndSec =
-					parseInt(mmssms[0]) * 60 + parseInt(mmssms[1]) + Math.round(parseInt(mmssms[2]) / 60);
+					parseInt(mmssms[0]) * 60 + parseInt(mmssms[1]);
 			}
 		},
 
