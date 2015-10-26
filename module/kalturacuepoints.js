@@ -30,9 +30,9 @@ var KalturaChaptersSample = {
 				var timerange = active.getAttribute("data-segmenttimes");
 				var tparts = timerange.split(" ");
 				var hhmmss = tparts[0].split(":");
-				KalturaChaptersSample.segmentStart = (parseInt(hhmmss[0]) * 3600 + parseInt(hhmmss[1]) * 60 + parseInt(hhmmss[2])) * 1000;
+				KalturaChaptersSample.segmentStart = (parseInt(hhmmss[0]) * 60 + parseInt(hhmmss[1]) * 60 + parseInt(hhmmss[2]);
 				hhmmss = tparts[2].split(":");
-				KalturaChaptersSample.segmentEnd = (parseInt(hhmmss[0]) * 3600 + parseInt(hhmmss[1]) * 60 + parseInt(hhmmss[2])) * 1000;
+				KalturaChaptersSample.segmentEnd = (parseInt(hhmmss[0]) * 60 + parseInt(hhmmss[1])) * 60 + parseInt(hhmmss[2]);
 			}
 		},
 
@@ -66,7 +66,7 @@ var KalturaChaptersSample = {
 		jumpToTime : function ( timesec ) {
 			if (KalturaChaptersSample.myPlayer != null) {
 				KalturaChaptersSample.myPlayer.sendNotification("doPlay");
-				KalturaChaptersSample.myPlayer.sendNotification("doSeek", timesec/1000);
+				KalturaChaptersSample.myPlayer.sendNotification("doSeek", timesec);
 			}
 		},
 
