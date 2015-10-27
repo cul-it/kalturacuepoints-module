@@ -24,7 +24,7 @@
 ?>
 <?php print $output;
   /* Your code goes here. */
-  $data = $row->{$field->field_field_playtime};
+  $data = $row->{$field->field_playtime};
   $out = array('playtime' => $data);
   dpm($out);
   dpm($output);
