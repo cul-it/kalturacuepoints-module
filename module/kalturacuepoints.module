@@ -749,6 +749,7 @@ function kalturacuepoints_field_formatter_view($entity_type, $entity, $field, $i
  * Implements hook_theme_registry_alter().
  */
 function kalturacuepoints_theme_registry_alter(&$theme_registry) {
+    dpm('kalturacuepoints_theme_registry_alter');
     // Defined path to the current module.
     $module_path = drupal_get_path('module', 'kalturacuepoints');
     // Find all .tpl.php files in this module's folder recursively.
