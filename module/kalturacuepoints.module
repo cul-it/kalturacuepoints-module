@@ -307,6 +307,7 @@ function kalturacuepoints_playtime($playtime) {
 	start date is in value, end date is in value2
 	if no end date is specified it matches start date
 	*/
+dpm('kalturacuepoints_playtime');
 	$return_sec = array('start' => 0, 'end' => false);
 	if (isset($playtime['und'][0]['value'])) {
 		$start = $playtime['und'][0]['value'];
