@@ -27,5 +27,8 @@
   if($output) {
     dpm($row);
   }
+  else {
+    dpm('playtime tpl');
+  }
 
 ?>
