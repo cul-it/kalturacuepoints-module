@@ -25,7 +25,8 @@
 <?php print $output;
   /* Your code goes here. */
   $playtime = $row{$field->field_playtime};
-  dpm(array('playtime' => $playtime));
+  $out = array('playtime' => $playtime);
+  dpm($out);
   dpm($output);
   if($output) {
     dpm($row);
