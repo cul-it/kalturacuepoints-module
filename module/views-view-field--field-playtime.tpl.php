@@ -24,9 +24,6 @@
 ?>
 <?php
   /* Your code goes here. */
-  // $data = $row->{$field->field_alias};
-  // $out = array('playtime' => $data);
-  // dpm($out);
   dpm($output);
   if($output) {
     if (!empty($row->field_field_playtime[0]['raw'])) {
@@ -38,7 +35,8 @@
       dpm($hhmmss);
       $startend = implode(' ', $hhmmss);
       dpm($startend);
-      print $startend;
+      $output = $startend;
+      print $output;
     }
   }
 
