@@ -24,12 +24,12 @@
 ?>
 <?php print $output;
   /* Your code goes here. */
-  $data = $row->{$field->field_alias};
-  $out = array('playtime' => $data);
-  dpm($out);
+  // $data = $row->{$field->field_alias};
+  // $out = array('playtime' => $data);
+  // dpm($out);
   dpm($output);
   if($output) {
-    dpm($row);
+    dpm($row->field_field_playtime);
   }
   else {
     dpm('playtime tpl');
