@@ -31,9 +31,11 @@
   if($output) {
     if (!empty($row->field_field_playtime[0]['raw'])) {
       $raw = $row->field_field_playtime[0]['raw'];
+      dpm($raw);
       $hhmmss = array();
       $hhmmss[] = array_pop(explode(' ', $raw->value));
       $hhmmss[] = array_pop(explode(' ', $raw->value2));
+      dpm($hhmmss);
       $startend = implode(' ', $hhmmss);
       dpm($startend);
     }
