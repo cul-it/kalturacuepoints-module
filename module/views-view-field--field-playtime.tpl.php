@@ -22,7 +22,7 @@
  * the view is modified.
  */
 ?>
-<?php print $output;
+<?php
   /* Your code goes here. */
   // $data = $row->{$field->field_alias};
   // $out = array('playtime' => $data);
@@ -38,10 +38,8 @@
       dpm($hhmmss);
       $startend = implode(' ', $hhmmss);
       dpm($startend);
+      print $startend;
     }
-  }
-  else {
-    dpm('playtime tpl');
   }
 
 ?>
