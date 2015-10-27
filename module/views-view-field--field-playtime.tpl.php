@@ -29,7 +29,14 @@
   // dpm($out);
   dpm($output);
   if($output) {
-    dpm($row->field_field_playtime);
+    if (!empty($row->field_field_playtime[0]['raw'])) {
+      $raw = $row->field_field_playtime[0]['raw'];
+      $hhmmss = array();
+      $hhmmss[] = array_pop(explode(' ', $raw->value));
+      $hhmmss[] = array_pop(explode(' ', $raw->value2));
+      $startend = implode(' ', $hhmmss);
+      dpm($startend);
+    }
   }
   else {
     dpm('playtime tpl');
