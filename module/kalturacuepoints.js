@@ -29,12 +29,16 @@ var KalturaChaptersSample = {
 			if (active != null) {
 				var timerange = active.getAttribute("data-segmenttimes");
 				var tparts = timerange.split(" ");
-				var mmssms = tparts[0].split(":");
-				KalturaChaptersSample.segmentStartSec =
-					parseInt(mmssms[0]) * 60 + parseInt(mmssms[1]);
-				mmssms = tparts[2].split(":");
-				KalturaChaptersSample.segmentEndSec =
-					parseInt(mmssms[0]) * 60 + parseInt(mmssms[1]);
+				var hhmmss = tparts[0].split(":");
+				var hh = parseInt(hhmmss[0]);
+				var mm = parseInt(hhmmss[1]);
+				var ss = parseInt(hhmmss[2]);
+				KalturaChaptersSample.segmentStartSec = ((hh * 60) + mm) * 60 + ss;
+				hhmmss = tparts[2].split(":");
+				hh = parseInt(hhmmss[0]);
+				mm = parseInt(hhmmss[1]);
+				ss = parseInt(hhmmss[2]);
+				KalturaChaptersSample.segmentEndSec = ((hh * 60) + mm) * 60 + ss;
 			}
 		},
 
