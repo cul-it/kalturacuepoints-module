@@ -4,7 +4,6 @@ package = "Cornell University Library"
 core = 7.x
 
 files[] = kalturacuepoints.js
-files[] = views-view--field-playtime.tpl.php
 
 dependencies[] = references
 dependencies[] = entity
