@@ -769,8 +769,8 @@ function kalturacuepoints_theme_registry_alter(&$theme_registry) {
  * Implements: hook_views_post_execute().
  */
 function kalturacuepoints_views_post_execute(&$view) {
-  if ($view->name == 'clone_of_video_segment_display_conversations_v2_') {
-    dsm('called kalturacuepoints_views_post_execute');
-    dsm($view->result);
-  }
+  // if ($view->name == 'clone_of_video_segment_display_conversations_v2_') {
+  //   dsm('called kalturacuepoints_views_post_execute');
+  //   dsm($view->result);
+  // }
 }
