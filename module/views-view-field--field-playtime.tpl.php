@@ -23,15 +23,20 @@
  */
 ?>
 <?php
-  /* Your code goes here. */
+  /*
+  $row->field_field_playtime[0]['raw'] contains the UTF version of the start and end time.
+  format like this: 00:11:11 to 00:15:12
+  */
   dpm($output);
   if($output) {
     dsm($row);
+    dsm($field);
     if (!empty($row->field_field_playtime[0]['raw'])) {
       $raw = $row->field_field_playtime[0]['raw'];
       dpm($raw);
       $hhmmss = array();
       $hhmmss[] = array_pop(explode(' ', $raw['value']));
+      $hhmmss[] = 'to';
       $hhmmss[] = array_pop(explode(' ', $raw['value2']));
       dpm($hhmmss);
       $startend = implode(' ', $hhmmss);
