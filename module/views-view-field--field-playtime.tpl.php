@@ -45,7 +45,7 @@
       dpm($startend);
       $output = $startend;
       print $output;
-      $row->field_field_playtime[0]['rendered']['#markup'] = $startend;
+      // does not set value in kalturacuepoints_playtime_field $row->field_field_playtime[0]['rendered']['#markup'] = $startend;
     }
   }
 
