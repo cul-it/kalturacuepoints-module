@@ -774,6 +774,7 @@ function kalturacuepoints_views_post_execute(&$view) {
     foreach ($view->result as $r) {
       if (isset($r->field_field_playtime)) {
         dsm($r->field_field_playtime);
+        $r->field_field_playtime[0]['rendered']['#markup'] = 'my test output';
       }
     }
   }
