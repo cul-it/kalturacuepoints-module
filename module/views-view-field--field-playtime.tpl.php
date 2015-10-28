@@ -32,7 +32,7 @@
     dsm($row);
     $data = $row->{$field->field_alias};
     dsm($data);
-    dsm($field);
+    dsm($field->content);
     if (!empty($row->field_field_playtime[0]['raw'])) {
       $raw = $row->field_field_playtime[0]['raw'];
       dpm($raw);
