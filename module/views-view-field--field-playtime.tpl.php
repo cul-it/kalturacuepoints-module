@@ -30,7 +30,7 @@
   dpm($output);
   if($output) {
     dsm($row);
-    dsm($field);
+    //dsm($field);
     if (!empty($row->field_field_playtime[0]['raw'])) {
       $raw = $row->field_field_playtime[0]['raw'];
       dpm($raw);
