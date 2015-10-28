@@ -774,10 +774,8 @@ function kalturacuepoints_theme_registry_alter(&$theme_registry) {
   */
 function kalturacuepoints_views_post_execute(&$view) {
   if ($view->name == 'clone_of_video_segment_display_conversations_v2_') {
-    dsm('called kalturacuepoints_views_post_execute');
     foreach ($view->result as $r) {
       if (isset($r->field_field_playtime)) {
-        dsm($r->field_field_playtime);
         $raw = $r->field_field_playtime[0]['raw'];
         $hhmmss = array();
         $hhmmss[] = array_pop(explode(' ', $raw['value']));

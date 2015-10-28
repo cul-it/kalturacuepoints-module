@@ -27,22 +27,15 @@
   $row->field_field_playtime[0]['raw'] contains the UTF version of the start and end time.
   format like this: 00:11:11 to 00:15:12
   */
-  dpm($output);
   if($output) {
-    dsm($row);
     $data = $row->{$field->field_alias};
-    dsm($data);
-    dsm($field->content);
     if (!empty($row->field_field_playtime[0]['raw'])) {
       $raw = $row->field_field_playtime[0]['raw'];
-      dpm($raw);
       $hhmmss = array();
       $hhmmss[] = array_pop(explode(' ', $raw['value']));
       $hhmmss[] = 'to';
       $hhmmss[] = array_pop(explode(' ', $raw['value2']));
-      dpm($hhmmss);
       $startend = implode(' ', $hhmmss);
-      dpm($startend);
       $output = $startend;
       print $output;
       // does not set value in kalturacuepoints_playtime_field $row->field_field_playtime[0]['rendered']['#markup'] = $startend;
