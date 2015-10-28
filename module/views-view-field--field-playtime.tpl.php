@@ -30,6 +30,8 @@
   dpm($output);
   if($output) {
     dsm($row);
+    $data = $row->{$field->field_alias};
+    dsm($data);
     //dsm($field);
     if (!empty($row->field_field_playtime[0]['raw'])) {
       $raw = $row->field_field_playtime[0]['raw'];
