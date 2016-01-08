@@ -8,6 +8,9 @@
 
 //require_once(dirname(__FILE__) . "/kaltura_php5/KalturaClient.php");
 
+include_once 'kalturacuepoints_embed.inc';
+
+
 /**
  * load kaltura stuff
  */
