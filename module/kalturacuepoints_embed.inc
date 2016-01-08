@@ -1,7 +1,7 @@
 <?php
 
 function _kalturacuepoints_embed_20160107($player_width, $player_height, $title, $description, $partner, $player, $entry, $fv_playrange) {
-$str <<EOD
+$str <<<EOD
 <div id="kaltura_player_1452201175" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 <span itemprop="name" content="$title"></span>
 <span itemprop="description" content="$description"></span>
@@ -22,7 +22,7 @@ return $str;
  *  player ID 9524271
  */
 function _kalturacuepoints_embed_2015($player_width, $player_height, $title, $description, $partner, $player, $entry, $fv_playrange) {
-$str <<EOD
+$str <<<EOD
 <div id="kaltura_player_1445872886" style="width: {$player_width}px; height: {$player_height}px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 <span itemprop="name" content="$title""></span>
 <span itemprop="description" content="$description"></span>
