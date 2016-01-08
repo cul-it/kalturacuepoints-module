@@ -68,7 +68,7 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
   $clean_str = t($str, $t_params);
   dpm($str, 'undoctored string');
   dpm($clean_str, 'string after t()');
-  return $str;
+  return $clean_str;
 }
 
 
