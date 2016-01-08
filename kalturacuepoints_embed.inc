@@ -43,7 +43,7 @@ $str = <<<EOD
 <span itemprop="width" content="@wid"></span>
 <span itemprop="height" content="@hgt"></span>
 </div>
-<script src="https://cdnapisec.kaltura.com/p/@partner/sp/@partner00/embedIframeJs/uiconf_id/9524271/partner_id/@partner?autoembed=true&entry_id=@entry&playerId=kaltura_player_1452201175&cache_st=1452201175&width=@wid&height=@hgt&flashvars[streamerType]=auto&@playrange></script>
+<script src="https://cdnapisec.kaltura.com/p/@partner/sp/@partner00/embedIframeJs/uiconf_id/9524271/partner_id/@partner?autoembed=true&entry_id=@entry&playerId=kaltura_player_1452201175&cache_st=1452201175&width=@wid&height=@hgt&flashvars[streamerType]=auto&@playrange"></script>
 EOD;
 return $str;
 }
