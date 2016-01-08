@@ -29,8 +29,6 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
 
   $str = _kalturacuepoints_embed_20160108();
   $clean_str = t($str, $t_params);
-  dpm($str, 'undoctored string');
-  dpm($clean_str, 'string after t()');
   return $clean_str;
 }
 
