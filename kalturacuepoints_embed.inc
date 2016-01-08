@@ -55,9 +55,7 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
   // parameters to use with drupal t() to protect against xss
   $t_params = array(
     '@wid' => $player_width,
-    '@widpx' => $player_width . 'px',   // embed needs number with px suffix
     '@hgt' => $player_height,
-    '@hgtpx' => $player_height . 'px',  // embed needs number with px suffix
     '@title' => $title,
     '@descr' => $description,
     '@partner' => $partner,
