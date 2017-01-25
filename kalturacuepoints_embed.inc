@@ -2,7 +2,7 @@
 
 function kalturacuepoints_player_embed_code($entry, $title, $description,
   $start_sec = 0, $end_sec = false,
-  $partner = 518251, $sub_partner = 51825100, $player = 9524271 /*7929281*/,
+  $partner = 518251, $sub_partner = 51825100, $player = 33905641,
   $player_width = 400, $player_height = 289 ) {
   // emit code for a kaltura player
   // $entry is the id of the asset like 1_t9lgbvo6
