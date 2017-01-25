@@ -15,6 +15,9 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
     $fv_playrange .= "&flashvars[mediaProxy.mediaPlayTo]=$end_sec";
   }
 
+  $playerId = 'kaltura_player_1485377760';
+  $cache_st = '1485377760';
+
   // parameters to use with drupal t() to protect against xss
   $t_params = array(
     '@wid' => $player_width,
@@ -25,6 +28,8 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
     '@player' => $player,
     '@entry' => $entry,
     '@playrange' => $fv_playrange,
+    '@playerId' => $playerId,
+    '@cache_st' => $cache_st,
     );
 
   $str = _kalturacuepoints_embed_20160108();
@@ -43,22 +48,23 @@ $str = <<<EOD
 <span itemprop="width" content="@wid"></span>
 <span itemprop="height" content="@hgt"></span>
 </div>
-<script src="https://cdnapisec.kaltura.com/p/@partner/sp/@partner00/embedIframeJs/uiconf_id/9524271/partner_id/@partner?autoembed=true&entry_id=@entry&playerId=kaltura_player_1452201175&cache_st=1452201175&width=@wid&height=@hgt&flashvars[streamerType]=auto&@playrange"></script>
+<script src="https://cdnapisec.kaltura.com/p/@partner/sp/@partner00/embedIframeJs/uiconf_id/9524271/partner_id/@partner?autoembed=true&entry_id=@entry&playerId=@playerId&cache_st=@cache_st&width=@wid&height=@hgt&flashvars[streamerType]=auto&@playrange"></script>
 EOD;
 return $str;
 }
+
 
 /**
  * example embed from KMC
  */
 /*
- <div id="kaltura_player_1452278723" style="width: 640px; height: 444px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
-<span itemprop="name" content="I&#x27;ve never seen two dogs exchange a bone"></span>
+<div id="kaltura_player_1485377760" style="width: 640px; height: 444px;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+<span itemprop="name" content="&quot;Wastage&quot; of Humans / Comrade Mauser / &quot;Victim of History&quot;"></span>
 <span itemprop="description" content=""></span>
-<span itemprop="duration" content="188"></span>
-<span itemprop="thumbnail" content="https://cdnsecakmi.kaltura.com/p/518251/sp/51825100/thumbnail/entry_id/1_3ej4zd2t/version/100031/acv/191"></span>
+<span itemprop="duration" content="2709"></span>
+<span itemprop="thumbnail" content="https://cfvod.kaltura.com/p/518251/sp/51825100/thumbnail/entry_id/1_y732of1y/version/100011"></span>
 <span itemprop="width" content="640"></span>
 <span itemprop="height" content="444"></span>
 </div>
-<script src="https://cdnapisec.kaltura.com/p/518251/sp/51825100/embedIframeJs/uiconf_id/9524271/partner_id/518251?autoembed=true&entry_id=1_3ej4zd2t&playerId=kaltura_player_1452278723&cache_st=1452278723&width=640&height=444&flashvars[streamerType]=auto"></script>
+<script src="https://cdnapisec.kaltura.com/p/518251/sp/51825100/embedIframeJs/uiconf_id/33905641/partner_id/518251?autoembed=true&entry_id=1_y732of1y&playerId=kaltura_player_1485377760&cache_st=1485377760&width=640&height=444&flashvars[streamerType]=auto"></script>
  */
