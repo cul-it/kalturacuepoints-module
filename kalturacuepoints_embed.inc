@@ -40,7 +40,7 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
 
 function _kalturacuepoints_embed_20170125() {
 $str = <<<EOD
-<div id="kaltura_player_1452201175" style="width: @widpx; height: @hgtpx;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+<div id="@playerId" style="width: @widpx; height: @hgtpx;" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
 <span itemprop="name" content="@title"></span>
 <span itemprop="description" content="@descr"></span>
 <span itemprop="duration" content=""></span>
