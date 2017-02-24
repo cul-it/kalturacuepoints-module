@@ -670,9 +670,11 @@ function kalturacuepoints_views_post_execute(&$view) {
       if (isset($r->field_field_playtime)) {
         $raw = $r->field_field_playtime[0]['raw'];
         $hhmmss = array();
-        $hhmmss[] = array_pop(explode(' ', $raw['value']));
+        $vals = explode(' ', $raw['value']);
+        $hhmmss[] = array_pop($vals);
         $hhmmss[] = 'to';
-        $hhmmss[] = array_pop(explode(' ', $raw['value2']));
+        $vals = explode(' ', $raw['value2']);
+        $hhmmss[] = array_pop($vals);
         $startend = implode(' ', $hhmmss);
         $r->field_field_playtime[0]['rendered']['#markup'] = $startend;
       }
