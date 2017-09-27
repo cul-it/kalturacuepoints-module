@@ -15,8 +15,11 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
     $fv_playrange .= "&flashvars[mediaProxy.mediaPlayTo]=$end_sec";
   }
 
+  // these may change with each version of the player
   $playerId = 'kaltura_player_1506540327';
   $cache_st = '1506540327';
+
+  $ui_confid = '33905641';  // KMC Studio Player ID
 
   // parameters to use with drupal t() to protect against xss
   $t_params = array(
@@ -30,6 +33,7 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
     '@playrange' => $fv_playrange,
     '@playerId' => $playerId,
     '@cache_st' => $cache_st,
+    '@ui_confid' => $ui_confid,
     );
 
   $str = _kalturacuepoints_embed_20170125();
@@ -68,7 +72,7 @@ $str = <<<EOD
 <span itemprop="width" content="@wid"></span>
 <span itemprop="height" content="@hgt"></span>
 </div>
-<script src="https://cdnapisec.kaltura.com/p/@partner/sp/@partner00/embedIframeJs/uiconf_id/9524271/partner_id/@partner?autoembed=true&entry_id=@entry&playerId=@playerId&cache_st=@cache_st&width=@wid&height=@hgt&flashvars[streamerType]=auto&@playrange"></script>
+<script src="https://cdnapisec.kaltura.com/p/@partner/sp/@partner00/embedIframeJs/uiconf_id/@ui_confid/partner_id/@partner?autoembed=true&entry_id=@entry&playerId=@playerId&cache_st=@cache_st&width=@wid&height=@hgt&flashvars[streamerType]=auto&@playrange"></script>
 EOD;
 return $str;
 }
