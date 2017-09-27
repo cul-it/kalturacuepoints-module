@@ -15,8 +15,8 @@ function kalturacuepoints_player_embed_code($entry, $title, $description,
     $fv_playrange .= "&flashvars[mediaProxy.mediaPlayTo]=$end_sec";
   }
 
-  $playerId = 'kaltura_player_1485377760';
-  $cache_st = '1485377760';
+  $playerId = 'kaltura_player_1506540327';
+  $cache_st = '1506540327';
 
   // parameters to use with drupal t() to protect against xss
   $t_params = array(
